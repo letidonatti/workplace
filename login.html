@@ -14,18 +14,21 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <style>
-    html, body{
+  html, body{
       height: 100%;
     }
 
     body {
       display: -ms-flexbox;
       display: flex;
-      -ms-flex-align: center;
+     -ms-flex-align: center;
       align-items: center;
       padding-top: 40px;
       padding-bottom: 40px;
+      padding-left: 450px;
+      padding-right: 550px;
       background-color: #f5f5f5;
+      
     }
 
     .signin {
@@ -38,14 +41,22 @@
 </head>
 
 <body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 16/08/2020) -> Punto 3 y 4.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
+  <form class="form-signin">
+<img src="img/login.png" alt=" " width="400">
+<h1 class="h3 mb-3 font-weight-normal">¡Hola! Para seguir, ingresa tu correo electrónico y contraseña</h1>
+<label for="inputEmail" class="sr-only">Correo electrónico</label>
+<input type="email" id="inputEmail" class="form-control" placeholder="Correo electrónico" required autofocus>
+<label for="inputPassword" class="sr-only">Contraseña</label>
+<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+<div class="checkbox mb-3">
+  <label>
+    <input type="checkbox" value="remember-me"> Recordarme
+  </label>
+</div>
+<button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+<p class="mt-5 mb-3 text-muted">&copy; JaP 2020</p>
+</form>
+
 
   <script src="js/init.js"></script>
   <script src="js/login.js"></script>
