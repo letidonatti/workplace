@@ -18,6 +18,11 @@ background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
 }
 
+#foto{
+  margin-bottom: 15px;
+}
+
+
 .jumbotron, .card-body, .container, .site-header{
     font-family: 'Raleway', serif !important;
 }
