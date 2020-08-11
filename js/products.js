@@ -12,11 +12,11 @@ function showCategoriesList(array){
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">`+ category.name +`<br></h4>
+                        <h4 class="mb-1">`+ category.name +` - `+ category.currency +` `+ commaSeparateNumber(category.cost) +`<br></h4>
                     </div>
                 <div><p>` + category.description + `</p></div>
                 </div>
-                <div>` + category.currency +` `+ category.cost +`</div>
+                <div style="font-size: smaller; font-style: italic;" >` + category.soldCount + ` unidades </div>
             </div>
         </div>
         ` 
@@ -24,6 +24,12 @@ function showCategoriesList(array){
         
     }
 }
+function commaSeparateNumber(val){ 
+    while (/(\d+)(\d{3})/.test(val.toString())){ 
+     val = val.toString().replace(/(\d+)(\d{3})/, '$1'+'.'+'$2'); 
+    } 
+    return val; 
+    } 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
