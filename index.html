@@ -38,6 +38,18 @@
       margin: auto;
     }
   </style>
+  <script>
+    function guardar(user, pass){
+      if (!user.trim()===""){
+        localStorage.setItem("usuario", user);
+        alert("Se guardó el usuario " + localStorage.getItem("usuario"));
+      }
+      if (!pass.trim()===""){
+        localStorage.setItem("contrasenia", pass);
+        alert("Se guardó el usuario " + localStorage.getItem("usuario"));
+      }
+    }
+  </script> 
 </head>
 
 <body class="text-center">
@@ -48,10 +60,10 @@
   <h1 class="h3 mb-3 font-weight-normal">¡Hola! Para seguir, ingresa tu usuario y contraseña</h1>
     
   <label for="username" class="sr-only">Usuario</label>
-  <input type="text" pattern=".{1,15}" id="username" class="form-control" placeholder="Usuario" required autofocus>
+  <input type="text" id="username" class="form-control" placeholder="Usuario" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required autofocus>
   
   <label for="inputPassword" class="sr-only">Contraseña</label>
-  <input type="password" pattern=".{6,8}" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+  <input type="password" pattern=".{6,10}" id="inputPassword" class="form-control" placeholder="Contraseña"  required>
   
   <p id="formErrorUser"></p>
   <p id="formErrorPass"></p> 
@@ -61,7 +73,7 @@
       <input type="checkbox" value="remember-me"> Recordarme
     </label>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="guardar(username.value, inputPassword.value); ">Ingresar</button>
 
   <p class="mt-5 mb-3 text-muted">&copy; JaP 2020</p>
   </form>
