@@ -16,27 +16,33 @@
       window.onload = function mostrarVentana(){
           var ventana = document.getElementById("miVentana");
           ventana.style.marginTop = "100px";
-          ventana.style.left = ((document.body.clientWidth-380) / 2) + "px";
+          ventana.style.left = "430px";
           ventana.style.display = "block";
-          var resto = document.getElementsByTagName("main");
-          resto.classList.add("bajomodal");
+          var pantalla = document.getElementsByTagName("main");
+          pantalla.classList.add("bajomodal");
       };
       function ocultarVentana(){
           var ventana = document.getElementById("miVentana");
           ventana.style.display = "none";
-          var resto = document.getElementsByTagName("main");
-          resto.classList.remove("bajomodal");
-      }
+          var pantalla = document.getElementsByTagName("main");
+          pantalla.classList.remove("bajomodal");
+      };
   </script>
+  <script>
+    function olvidar(){
+        localStorage.setItem("usuario", "");
+        localStorage.setItem("contrasenia", "");
+      };
+  </script> 
   </head>
   <body>
     <div id="miVentana">
-      <div id="bienvenido">Bienvenido: <br><span id="user1"></span><br></div>
-        <p id="volverAver">¡Nos encanta volver a verte!</p>
+      <div id="bienvenido">Bienvenido: <br><span id="user"></span><br></div>
       <script>
-          var usuario = localStorage.getItem("usuario");
-          document.getElementById("user1").innerHTML=usuario;
+          var nombreDeUsuario = localStorage.getItem("usuario");
+          document.getElementById("user").innerHTML=nombreDeUsuario;
       </script>
+      <p id="volverAver">¡Nos encanta volver a verte!</p>
     <button id="aceptar" onclick="ocultarVentana();" >Continuar </button>
     </div>
     <nav class="site-header sticky-top py-1 bg-dark">
@@ -46,6 +52,7 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+        <button class="py-2 d-none d-md-inline-block boton" onclick="olvidar();">Cerrar Sesión</button>
       </div>
     </nav>
     <main role="main">
