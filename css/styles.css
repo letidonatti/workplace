@@ -54,6 +54,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 
 #miVentana{
   position: fixed;
+  z-index: 50px;
   width: 500px; 
   height: 300px;
   background: url("../img/modal_back.jpg");
@@ -61,8 +62,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
   background-position: center;
   background-repeat: no-repeat;
 }
+/*formato de la pantalla que queda abajo del modal*/
 .bajomodal {
   filter: grayscale(80%); 
+  z-index: -2px;
 }
 
 .boton{
