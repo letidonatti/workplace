@@ -41,24 +41,28 @@ function showProductsList(array){
     hideSpinner();
     let htmlContentToAppend = "";
     for(let i = 0; i < array.length; i++){
-        let category = array[i];
+        let product = array[i];
+//filtro de precio
+    if (((minPrice == undefined) || (minPrice != undefined && (product.cost) >= minPrice)) &&
+        ((maxPrice == undefined) || (maxPrice != undefined && (product.cost) <= maxPrice))){
 
         htmlContentToAppend += `
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
-                    <img src="` + category.imgSrc + `" alt=" " class="img-thumbnail">
+                    <img src="` + product.imgSrc + `" alt=" " class="img-thumbnail">
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">`+ category.name +` - `+ category.currency +` `+ commaSeparateNumber(category.cost) +`<br></h4>
+                        <h4 class="mb-1">`+ product.name +` - `+ product.currency +` `+ commaSeparateNumber(product.cost) +`<br></h4>
                     </div>
-                <div><p>` + category.description + `</p></div>
+                <div><p>` + product.description + `</p></div>
                 </div>
-                <div style="font-size: smaller; font-style: italic;" >` + category.soldCount + ` vendidos </div>
+                <div style="font-size: smaller; font-style: italic;" >` + product.soldCount + ` vendidos </div>
             </div>
         </div>
-        ` 
+        `
+        };  
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
         
     }
@@ -95,48 +99,41 @@ document.addEventListener("DOMContentLoaded", function(e){
         {
             productsArray = resultObj.data;
           
-            
-            showProductsList(productsArray);
-            
-        }
-    });
-    
-/* });
+         //   sortAndShowCategories(ORDER_ASC_BY_PRICE, productsArray);
 
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCTS_URL).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            sortAndShowProducts(ORDER_ASC_BY_PRICE, resultObj.data);
+           showProductsList(productsArray);
+            
         }
     });
- */
+
+//ordena por precio ascendente
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowProducts(ORDER_ASC_BY_PRICE, productsArray);
     });
-
+//ordena por precio descendente
     document.getElementById("sortDesc").addEventListener("click", function(){
         sortAndShowProducts(ORDER_DESC_BY_PRICE, productsArray);
     });
-
-    document.getElementById("sortByCount").addEventListener("click", function(){
+//ordena por relevancia descendente
+    document.getElementById("sortByPrice").addEventListener("click", function(){
         sortAndShowProducts(ORDER_BY_PROD_RELEV, productsArray);
     });
-
+//limpia los filtros de precio
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
-        document.getElementById("rangeFilterCountMin").value = "";
-        document.getElementById("rangeFilterCountMax").value = "";
+        document.getElementById("rangeFilterPriceMin").value = "";
+        document.getElementById("rangeFilterPriceMax").value = "";
 
         minPrice = undefined;
         maxPrice = undefined;
 
         showProductsList(productsArray);
     });
-
-    document.getElementById("rangeFilterCount").addEventListener("click", function(){
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-        //de productos por categoría.
-        minPrice = document.getElementById("rangeFilterCountMin").value;
-        maxPrice = document.getElementById("rangeFilterCountMax").value;
+//ordena por precio según filtro ingresado por el usuario
+    document.getElementById("rangeFilterPrice").addEventListener("click", function(){
+        //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
+       
+        minPrice = document.getElementById("rangeFilterPriceMin").value;
+        maxPrice = document.getElementById("rangeFilterPriceMax").value;
 
         if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
             minPrice = parseInt(minPrice);
@@ -151,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         else{
             maxPrice = undefined;
         }
-
+       
         showProductsList(productsArray);
     });
-});
+ }); 
