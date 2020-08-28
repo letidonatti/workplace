@@ -36,15 +36,17 @@
       <div class="text-center p-4">
           <h2>Listado</h2>
       </div>
+
+      
       <!--filtros por precio y relevancia-->
       <div class="row">
-        <div class="col text-right">
+        <div class="col text-right" style="margin-right:100px">
             <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
                 <label class="btn btn-light active" id="sortAsc" >
-                    <input type="radio" name="options" autocomplete="off" checked>Menor Precio
+                    <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-sort-amount-up mr-1"></i>Precio
                 </label>
                 <label class="btn btn-light" id="sortDesc" >
-                    <input type="radio" name="options" autocomplete="off">Mayor Precio
+                    <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Precio
                 </label>
                 <label class="btn btn-light" id="sortByPrice" >
                     <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Recomendados
@@ -52,19 +54,27 @@
             </div>
         </div>
       </div>
-    <!--filtros por precio-->
-    <div class="row justify-content-end">
-      <div class="col-md-6"></div>
+    
+    
+    <div class="row justify-content-end" style="margin-right:100px">
+      <div class="col-md-6">
+        <!-- campo de búsqueda -->
+        <div class="form-control" style="width:300px; margin-left:105px; white-space:nowrap;" id="busqueda">
+          <img src="img/lupa.jpg" alt="">
+          <input type="search" id="search" placeholder="Buscar..." style="border: none; outline: 0;"/>
+        </div>
+      </div>
+      <!--filtros por precio-->
         <div class="col-md-6 col-sm-12 mb-1 container">
           <div class="row container p-0 m-0">
             <div class="col">
               <p class="font-weight-normal text-right my-2">Precio</p>
             </div>
             <div class="col">
-              <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin">
+              <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin" style="width:100px;">
             </div>
             <div class="col">
-              <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax">
+              <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax" style="width:100px;">
             </div>
             <div class="col-3 p-0">
               <div class="btn-group" role="group">

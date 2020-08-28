@@ -5,6 +5,8 @@ var currentproductsArray = [];
 var currentSortCriteria = undefined;
 var minPrice = undefined;
 var maxPrice = undefined;
+var busqueda = document.getElementById('search');
+
 
 //ordena por precio y relevancia (más vendidos)
 function sortProducts(criteria, array){
@@ -42,7 +44,8 @@ function showProductsList(array){
     let htmlContentToAppend = "";
     for(let i = 0; i < array.length; i++){
         let product = array[i];
-//filtro de precio
+    
+//filtro de precio 
     if (((minPrice == undefined) || (minPrice != undefined && (product.cost) >= minPrice)) &&
         ((maxPrice == undefined) || (maxPrice != undefined && (product.cost) <= maxPrice))){
 
@@ -62,12 +65,16 @@ function showProductsList(array){
             </div>
         </div>
         `
-        };  
+        }
+    if (htmlContentToAppend != ""){
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
-        
+    } else{
+        document.getElementById("cat-list-container").innerHTML = '<br><br> No se encontraron productos que coincidan con su búsqueda. <br> Inténtelo nuevamente.<br>';
     }
+    
+ }; 
 }
-//para darle formato al precio separando miles con .
+//para darle formato al precio separando miles con punto
 function commaSeparateNumber(val){ 
     while (/(\d+)(\d{3})/.test(val.toString())){ 
      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+'.'+'$2'); 
@@ -75,6 +82,7 @@ function commaSeparateNumber(val){
     return val; 
     } 
 
+//muestro los productos ordenados
 function sortAndShowProducts(sortCriteria, productsArray){
     currentSortCriteria = sortCriteria;
    
@@ -84,7 +92,7 @@ function sortAndShowProducts(sortCriteria, productsArray){
    
     currentproductsArray = sortProducts(currentSortCriteria, currentproductsArray);
     
-    //Muestro las categorías ordenadas
+    
     showProductsList(currentproductsArray);
 }
 
@@ -93,7 +101,7 @@ function sortAndShowProducts(sortCriteria, productsArray){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    
+//obtengo el json
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
@@ -110,14 +118,17 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowProducts(ORDER_ASC_BY_PRICE, productsArray);
     });
+
 //ordena por precio descendente
     document.getElementById("sortDesc").addEventListener("click", function(){
         sortAndShowProducts(ORDER_DESC_BY_PRICE, productsArray);
     });
+
 //ordena por relevancia descendente
     document.getElementById("sortByPrice").addEventListener("click", function(){
         sortAndShowProducts(ORDER_BY_PROD_RELEV, productsArray);
     });
+
 //limpia los filtros de precio
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
         document.getElementById("rangeFilterPriceMin").value = "";
@@ -128,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showProductsList(productsArray);
     });
+
 //ordena por precio según filtro ingresado por el usuario
     document.getElementById("rangeFilterPrice").addEventListener("click", function(){
         //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
@@ -151,4 +163,19 @@ document.addEventListener("DOMContentLoaded", function(e){
        
         showProductsList(productsArray);
     });
- }); 
+
+//barra buscadora en tiempo real
+    busqueda.addEventListener('keyup', (e)=>{
+
+        var valorBuscado = busqueda.value.toLowerCase(); 
+        var filtroProductos = productsArray.filter(product =>{
+            return(product.name.toLowerCase().includes(valorBuscado) || product.description.toLowerCase().includes(valorBuscado));
+        });
+        if (filtroProductos.length != 0){
+        showProductsList(filtroProductos);
+        }else{
+            document.getElementById("cat-list-container").innerHTML = '<br><br> No se encontraron productos que coincidan con su búsqueda. <br> Inténtelo nuevamente.<br>';
+        };
+    });
+}); 
+  
