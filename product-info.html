@@ -23,6 +23,15 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <div>
+        <img src="img/user.jpg" alt="" style="z-index: 5px; width: 22px; height: 25px; opacity: 70%;">
+        <span class="py-2 d-none d-md-inline-block" id="userLogueado" style="color:white;"></span>
+        
+        <script>
+          var nomDeUsuer = localStorage.getItem("usuario");
+          document.getElementById("userLogueado").innerHTML= 'Hola, ' + nomDeUsuer;
+        </script>
+      </div>
     </div>
   </nav>
   <main role="main">
@@ -52,7 +61,7 @@
 
         <dt>Precio</dt>
         <dd>
-          <p id="productPrice"></p>
+          <p id="productPrice" style="font-size:20px;"></p>
         </dd>
 
         <dt>Imágenes ilustrativas</dt>
@@ -66,8 +75,37 @@
           <div class="row text-center text-lg-left pt-2" id="relatedProducts">
           </div>
         </dd>
+
+        <dt>Comentarios</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="comments" style="margin-left: 30px;">
+          </div>
+        </dd>
       </dl>
-      
+      <br>
+<!-- Agregar comentarios -->
+        <form id="formularioComment">
+          <h4>¡Tu opinión nos importa!</h4>
+          <dt aria-required="true" style="margin-top: 15px; font-weight: bold;">Valoración:</dt>
+          <div class="valoracion">
+              <!-- Estrellas -->
+                <input id="radio1" type="radio" name="estrellas" value="5">
+                <label for="radio1" style="font-size: 30px;">★</label>
+                <input id="radio2" type="radio" name="estrellas" value="4">
+                <label for="radio2" style="font-size: 30px;">★</label>
+                <input id="radio3" type="radio" name="estrellas" value="3">
+                <label for="radio3" style="font-size: 30px;">★</label>
+                <input id="radio4" type="radio" name="estrellas" value="2">
+                <label for="radio4" style="font-size: 30px;">★</label>
+                <input id="radio5" type="radio" name="estrellas" value="1">
+                <label for="radio5" style="font-size: 30px;">★</label>
+          </div>
+          <div>
+              <dt style="margin-top: 15px; font-weight: bold;">Comentario:</dt>
+              <textarea name="comentarios" id="textComment" rows="5" cols="40" placeholder="Escribe aquí tus comentarios"></textarea><br>
+          </div>
+          <button type="button" class="boton" onclick="saveComment()" style="margin-top: 15px;">Comentar</button>
+      </form>
     </div>
   </main>
   
@@ -80,6 +118,7 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

@@ -127,6 +127,35 @@ div #bienvenido #user{
   position: absolute;
   z-index: 2;
 }
+/* formato del formulario para agegar comentarios */
+#form {
+  width: 250px;
+  margin: 0 auto;
+  height: 150px;
+}
+#form p {
+  text-align: center;
+}
+#form label {
+  font-size: 120px;
+}
+input[type="radio"] {
+  display: none;
+}
+label {
+  color: grey;
+}
+.valoracion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
 
 /*------------------------------------------------------------*/
 /* Formatos que ya existían */

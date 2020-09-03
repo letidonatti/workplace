@@ -44,6 +44,36 @@ function showRelatedProducts(array){
         document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
 }
 
+// muestro los comentarios que vienen en el Json
+function showComments(array){
+    
+    let htmlContentToAppend = "";
+
+    for (let i = 0; i < array.length; i++) {
+        var comment = array[i];
+    
+        htmlContentToAppend += `
+        <table style="width:100%">
+  
+            <tr>
+                <th>`+ comment.score +`</th>
+            </tr>
+            <tr>
+                <td><b>`+ comment.user +`</b></td>
+            </tr>
+            <tr>
+                <td><i>`+ comment.description +`</i></td>
+            </tr>
+            <tr>
+                <td><small>`+ comment.dateTime +`</small></td>
+            </tr>
+        </table>
+        <br><br>
+        `
+    }
+        document.getElementById("comments").innerHTML = htmlContentToAppend;
+}
+
 //separador de miles para el precio
 function commaSeparateNumber(val){ 
     while (/(\d+)(\d{3})/.test(val.toString())){ 
@@ -51,6 +81,36 @@ function commaSeparateNumber(val){
     } 
     return val; 
     } 
+
+//calcular la fecha actual
+function fechaDeHoy(){
+    
+    var hoy = new Date();
+    var fecha = hoy.getFullYear() + '-' + (hoy.getMonth()+1) + '-' + hoy.getDate();
+    var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+    var fechaYHora = fecha + ' ' + hora;
+
+    return fechaYHora;
+}
+
+//función para guardar el comentario en el array
+function saveComment(){
+
+    var userComment = {score:"", description:"", user:"", dateTime:""};
+    var radios = document.getElementsByName("estrellas");
+    var i = 0
+    while (i < radios.length) {
+        if (radios[i].checked) {
+            userComment.score = radios[i].value;};
+        i++
+    };
+    userComment.description = document.getElementById("textComment").value;
+    userComment.user = localStorage.getItem("usuario");
+    userComment.dateTime = fechaDeHoy();
+    // lo agrego al array de comentarios y lo muestro de nuevo para que actualice
+    comments.push(userComment);
+    showComments(comments);
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -84,5 +144,12 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         //Muestro los productos relacionados
         showRelatedProducts(product.relatedProducts);
+    });
+    //cargo el Json de los comentarios para poder mostrarlos
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok") { comments = resultObj.data; }
+
+        //Muestro los comentarios
+        showComments(comments);
     });
 });
