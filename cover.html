@@ -19,15 +19,15 @@
           ventana.style.marginTop = "100px";
           ventana.style.left = "430px";
           ventana.style.display = "block";
-          var pantalla = document.getElementsByTagName("main");
-          pantalla.classList.add("bajomodal");
+          document.getElementById("cuerpo").style.filter = "blur(5px)";
+          
       };
       //ocultar modal de bienvenida
       function ocultarVentana(){
           var ventana = document.getElementById("miVentana");
           ventana.style.display = "none";
-          var pantalla = document.getElementsByTagName("main");
-          pantalla.classList.remove("bajomodal");
+          document.getElementById("cuerpo").style.filter = "blur(0px)";
+          
       };
   </script>
   <script>

@@ -1,12 +1,23 @@
+/*Mis formatos agregados:*/
+/* -------------------------------------------------------------------------------------- */
+/* PANTALLA DE LOGIN */
+
+/* En las casillas del input señala si el formato no es válido */
 input:valid {
   border-color: green;
 }
-
+/* formato del mensaje de error si ingresa usuario o contraseña equivocado */
 #formErrorUser, #formErrorPass{
   font-size: small;
   color: red;
   background-blend-mode: rgb(230, 68, 68);
 }
+/*formato del botón de ingreso del login*/
+.btn:hover  {
+  -webkit-transform:scale(1.1);
+  transform:scale(1.1);
+}
+/* formato de todos los body */
 body{
 background: rgba(226,226,226,1);
 background: -moz-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 0%, rgba(254,254,254,1) 100%);
@@ -15,12 +26,7 @@ background: -ms-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1
 background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 0%, rgba(254,254,254,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
 }
-
-.btn:hover  {
-  -webkit-transform:scale(1.1);
-  transform:scale(1.1);
-}
-
+/* formato del logo de la web */
 #foto{
   margin-bottom: 15px;
   -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
@@ -51,24 +57,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+/* -------------------------------------------------------------------------------------- */
+/* PANTALA DE INICIO */
 
-#miVentana{
-  position: fixed;
-  z-index: 50px;
-  width: 500px; 
-  height: 300px;
-  background: url("../img/modal_back.jpg");
-  background-size: cover ;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-/*formato de la pantalla que queda abajo del modal*/
-.bajomodal {
-  filter: grayscale(80%); 
-  z-index: -2px;
-}
-
-
+/* formato del botón de cerrar sesión */
 .boton{
   border-color: white;
   border-radius: 12px;
@@ -78,6 +70,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
   background-color: rgb(206, 48, 82);
 }
 
+/* -------------------------------------------------------------------------------------- */
+/* MODAL DE BIENVENIDA */
+/* formato de la ventana modal */
+#miVentana{
+  position: fixed;
+  z-index: 2;
+  width: 500px; 
+  height: 300px;
+  background: url("../img/modal_back.jpg");
+  background-size: cover ;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* formato del parrafo "bienvenido" */
 #bienvenido{
   font-size: 50px;
   font-family: 'Raleway', serif !important;
@@ -92,14 +98,14 @@ div #bienvenido #user{
   font-size: 40px;
   font-style: oblique;
 }
-
+/* formato de la frase de abajo del modal */
 #volverAver{
   color: grey;
   font-style: oblique;
   margin-left: 20px;
   margin-top: 5px;
 }
-
+/* formato del botón de aceptar */
 #aceptar{
   background-color: rgba(255, 255, 255, 0.5);
   opacity: 100%;
@@ -112,6 +118,18 @@ div #bienvenido #user{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
 }
+/* -------------------------------------------------------------------------------------- */
+/* PANTALLA DE INFORMACION DEL PRODUCTO */
+/*formato de las imágenes del product-info*/
+.imagenesProd:hover  {
+  -webkit-transform:scale(1.5);
+  transform:scale(1.5);
+  position: absolute;
+  z-index: 2;
+}
+
+/*------------------------------------------------------------*/
+/* Formatos que ya existían */
 
 .jumbotron, .card-body, .container, .site-header{
     font-family: 'Raleway', serif !important;
