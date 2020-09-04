@@ -32,16 +32,30 @@ function showRelatedProducts(array){
         var relProd = relatedProduct[relIndex];
     
         htmlContentToAppend += `
-        <a href="product-info.html" class="col-lg-3 col-md-4 col-6">
+        <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
                 <img class="img-fluid img-thumbnail" src="` + relProd.imgSrc + `" alt="">
             <h4 class="mb-1">`+ relProd.name +`</h4>
             <p class="mb-1">` + relProd.description + `</p>
+            <a href="product-info.html">Ver producto</a>
             </div>
-        </a>
+        </div>
         `
     }
         document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
+}
+
+function showStars(stars){
+
+    let estrellitas  = "";
+
+    for(let i = 0; i < stars; i++){
+        estrellitas += `<span style="font-size: 30px; color:orange;">★</span>`
+    }
+    for(let i = stars; i < 5; i++){
+        estrellitas += `<span style="font-size: 30px; color: grey;">★</span>`
+    }
+    return estrellitas
 }
 
 // muestro los comentarios que vienen en el Json
@@ -56,10 +70,7 @@ function showComments(array){
         <table style="width:100%">
   
             <tr>
-                <th>`+ comment.score +`</th>
-            </tr>
-            <tr>
-                <td><b>`+ comment.user +`</b></td>
+                <th><b>`+ comment.user +`</b>`+ ` ` + showStars(parseInt(comment.score)) +`</th>
             </tr>
             <tr>
                 <td><i>`+ comment.description +`</i></td>
@@ -68,7 +79,7 @@ function showComments(array){
                 <td><small>`+ comment.dateTime +`</small></td>
             </tr>
         </table>
-        <br><br>
+        <br><br><br><br>
         `
     }
         document.getElementById("comments").innerHTML = htmlContentToAppend;
@@ -86,7 +97,13 @@ function commaSeparateNumber(val){
 function fechaDeHoy(){
     
     var hoy = new Date();
-    var fecha = hoy.getFullYear() + '-' + (hoy.getMonth()+1) + '-' + hoy.getDate();
+    if ((hoy.getMonth()+1)<10){
+        var mes="0"+(hoy.getMonth()+1);
+    };
+    if (hoy.getDate()<10){
+        var dia="0"+hoy.getDate();
+    };
+    var fecha = hoy.getFullYear() + '-' + mes + '-' + dia;
     var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
     var fechaYHora = fecha + ' ' + hora;
 

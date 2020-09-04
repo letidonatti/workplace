@@ -36,15 +36,10 @@
   </nav>
   <main role="main">
     <div class="container mt-5">
-      <div class="text-center p-4">
-        <h2>Descripción del producto</h2>
-        <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
-        <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea el producto seleccionado previamente, siempre se visualizará el presente: <strong>Chevrolet Onix Joy</strong>.</p>
-      </div>
       <h3 id="productName"></h3>
       <hr class="my-3">
       <dl>
-        <dt>Descripción</dt>
+        <!-- <dt>Descripción</dt> -->
         <dd>
           <p id="productDescription"></p>
         </dd>
@@ -70,13 +65,13 @@
           </div>
         </dd>
 
-        <dt>Productos relacionados</dt>
+        <dt style="font-size:20px;">Productos relacionados</dt>
         <dd>
           <div class="row text-center text-lg-left pt-2" id="relatedProducts">
           </div>
         </dd>
 
-        <dt>Comentarios</dt>
+        <dt style="font-size:20px;">Comentarios</dt>
         <dd>
           <div class="row text-center text-lg-left pt-2" id="comments" style="margin-left: 30px;">
           </div>
@@ -102,7 +97,7 @@
           </div>
           <div>
               <dt style="margin-top: 15px; font-weight: bold;">Comentario:</dt>
-              <textarea name="comentarios" id="textComment" rows="5" cols="40" placeholder="Escribe aquí tus comentarios"></textarea><br>
+              <textarea name="comentarios" id="textComment" rows="5" cols="40" placeholder="Escribe aquí tus comentarios..."></textarea><br>
           </div>
           <button type="button" class="boton" onclick="saveComment()" style="margin-top: 15px;">Comentar</button>
       </form>
