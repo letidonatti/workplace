@@ -8,14 +8,23 @@ function showImagesGallery(array){
     for(let i = 0; i < array.length; i++){
         let imageSrc = array[i];
 
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail imagenesProd" src="` + imageSrc + `" alt="">
+        if (i==0){
+        //la primera va activa para que funcione el carrusel
+            htmlContentToAppend +=`
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="` + imageSrc + `" alt="">
+                </div>
+                </div>
+            `
+        }else{
+            htmlContentToAppend +=`
+              <div class="carousel-item">
+                <img class="d-block w-100" src="` + imageSrc + `" alt="">
+              </div>
             </div>
-        </div>
-        `
-
+            `
+        }
+        
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
 }
@@ -45,6 +54,7 @@ function showRelatedProducts(array){
         document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
 }
 
+// función para mostrar estrellas en la puntuación que devuelve el Json de comentarios
 function showStars(stars){
 
     let estrellitas  = "";
@@ -62,6 +72,15 @@ function showStars(stars){
 function showComments(array){
     
     let htmlContentToAppend = "";
+    let sumaComentarios = 0;
+    let cantidadComentarios = 0;
+
+    //contadores para barras de progreso en sección Puntuación de nuestros clientes
+    let cinco=0;
+    let cuatro=0;
+    let tres=0;
+    let dos=0;
+    let uno=0;
 
     for (let i = 0; i < array.length; i++) {
         var comment = array[i];
@@ -81,8 +100,31 @@ function showComments(array){
         </table>
         <br><br><br><br>
         `
+        //datos para calcular el promedio
+        cantidadComentarios++;
+        sumaComentarios += parseInt(comment.score);
+        //barras de progreso
+        if (parseInt(comment.score)==5){
+            cinco++;
+        }else if (parseInt(comment.score)==4){
+            cuatro++;
+        }else if (parseInt(comment.score)==3){
+            tres++;
+        }else if (parseInt(comment.score)==2){
+            dos++;
+        }else{
+            uno++;
+        };
     }
-        document.getElementById("comments").innerHTML = htmlContentToAppend;
+        document.getElementById("comments").innerHTML = htmlContentToAppend; //comentarios
+        document.getElementById("promedioOpiniones").innerHTML = (sumaComentarios/cantidadComentarios).toFixed(2); //promedio
+        document.getElementById("cantidadDeOpiniones").innerHTML = `Promedio de <b>` + cantidadComentarios + `</b> opiniones`; //cantidad de opiniones
+        document.getElementById("contador5").value = cinco; //barras de progreso de cada valor
+        document.getElementById("contador4").value = cuatro;
+        document.getElementById("contador3").value = tres;
+        document.getElementById("contador2").value = dos;
+        document.getElementById("contador1").value = uno;
+
 }
 
 //separador de miles para el precio
@@ -94,7 +136,7 @@ function commaSeparateNumber(val){
     } 
 
 //calcular la fecha actual
-function fechaDeHoy(){
+function todaysDate(){
     
     var hoy = new Date();
     if ((hoy.getMonth()+1)<10){
@@ -123,7 +165,7 @@ function saveComment(){
     };
     userComment.description = document.getElementById("textComment").value;
     userComment.user = localStorage.getItem("usuario");
-    userComment.dateTime = fechaDeHoy();
+    userComment.dateTime = todaysDate();
     // lo agrego al array de comentarios y lo muestro de nuevo para que actualice
     comments.push(userComment);
     showComments(comments);

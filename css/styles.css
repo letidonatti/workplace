@@ -120,14 +120,8 @@ div #bienvenido #user{
 }
 /* -------------------------------------------------------------------------------------- */
 /* PANTALLA DE INFORMACION DEL PRODUCTO */
-/*formato de las imágenes del product-info*/
-.imagenesProd:hover  {
-  -webkit-transform:scale(1.5);
-  transform:scale(1.5);
-  position: absolute;
-  z-index: 2;
-}
-/* formato del formulario para agegar comentarios */
+
+/* formato del formulario para agregar comentarios */
 #form {
   width: 250px;
   margin: 0 auto;
