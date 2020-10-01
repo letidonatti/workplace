@@ -140,15 +140,18 @@ function todaysDate(){
     
     var hoy = new Date();
     if ((hoy.getMonth()+1)<10){
-        var mes="0"+(hoy.getMonth()+1);
+        var mes = "0"+(hoy.getMonth()+1);
+    }else{
+        var mes = hoy.getMonth()+1;
     };
     if (hoy.getDate()<10){
-        var dia="0"+hoy.getDate();
+        var dia = "0"+hoy.getDate();
+    }else{
+        var dia = hoy.getDate();
     };
     var fecha = hoy.getFullYear() + '-' + mes + '-' + dia;
     var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
     var fechaYHora = fecha + ' ' + hora;
-
     return fechaYHora;
 }
 

@@ -23,10 +23,11 @@ inputPass.addEventListener('invalid', function (e) {
 function guardar(){
     var user = inputUser.value;
     var pass = inputPass.value;
+
     if (user != '' && pass != ''){
         localStorage.setItem("usuario", user);
         localStorage.setItem("contraseña", pass);
-
-        location.href ='cover.html';
+        if (pass.length > 6 && pass.length < 10){
+            location.href ='cover.html';}
     }
 }
