@@ -58,14 +58,103 @@
       </script>
       </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+  <div class="text-center p-4">
+    <h2>Mi Carrito</h2>
   </div>
+  <!-- productos del carrito -->
+  <div class="container align-middle align-center">
+    <table id="cart-list-container" class="table" style="width:100%;"></table>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Dirección del envío</h4>
+  <form class="needs-validation" id="send-info">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="sendAdressStr">Calle</label>
+        <input type="text" class="form-control" id="sendAdressStr" placeholder="" value="" required>
+        <div class="invalid-feedback">
+          Ingresa el nombre de tu calle
+        </div>
+      </div>
+      <div class="col-md-2 mb-3">
+        <label for="sendAdressNum">Número</label>
+        <input type="number" class="form-control" id="sendAdressNum" placeholder="" value="" required>
+        <div class="invalid-feedback">
+          Ingresa el número
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="sendAdressCor">Esquina</label>
+        <input type="text" class="form-control" id="sendAdressCor" placeholder="" value="" required>
+        <div class="invalid-feedback">
+          Ingresa el nombre de la esquina
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="sendAdressCity">Ciudad</label>
+        <input type="text" class="form-control" id="sendAdressCity" placeholder="" value="">
+        <div class="invalid-feedback">
+          Ingresa la ciudad
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="sendAdressCount">País</label>
+        <input type="text" class="form-control" id="sendAdressCount" placeholder="" value="" required>
+        <div class="invalid-feedback">
+          Ingresa el país
+        </div>
+      </div>
+    </div>
+     
+    <hr class="mb-4">
+    <h5 class="mb-3">Tipo de envío</h5>
+    <div class="d-block my-3">
+      <div class="custom-control custom-radio">
+        <input id="premiumradio" name="sendType" type="radio" class="custom-control-input" checked="" required="" value=0.15>
+        <label class="custom-control-label" for="premiumradio">Premium (2 a 5 días)</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input id="expressradio" name="sendType" type="radio" class="custom-control-input" required="" value=0.07>
+        <label class="custom-control-label" for="expressradio">Express (5 a 8 días)</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input id="standardradio" name="sendType" type="radio" class="custom-control-input" required="" value=0.05>
+        <label class="custom-control-label" for="standardradio">Standar (12 a 15 días)</label>
+      </div>
+      <div class="row">
+        <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver condiciones</button>
+      </div>
+    </div>
+    <hr class="mb-4">
+    <h4 class="mb-3">Costos</h4>
+    <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Precio</h6>
+            <small class="text-muted">Subtotal de los productos</small>
+          </div>
+          <span class="text-muted" id="productPrice">-</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Envío</h6>
+            <small class="text-muted">Según el tipo de envío</small>
+          </div>
+          <span class="text-muted" id="sendPrice">-</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total a pagar (USD)</span>
+          <strong id="totalAPagar">-</strong>
+        </li>
+      </ul>
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
+  </form>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
