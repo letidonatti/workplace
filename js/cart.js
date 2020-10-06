@@ -87,7 +87,22 @@ function changeArtCount(i){
     actualizarBadgeCarrito();
 }
 
+//función que actualiza el badge del menu desplegable según la cantidad de artículos que haya de cada elemento del array
+function actualizarBadgeCarrito(){
 
+    if(localStorage.getItem('listaCargada') != null){ 
+        listado=localStorage.getItem('listaCarrito');
+        listado= JSON.parse(listado);
+    }
+    let cantPorProd = 0;
+    for(let i = 0; i < listado.length; i++){
+        
+        let article = listado[i];
+        cantPorProd += article.count;
+
+    }
+    document.getElementById("badgeCarrito").innerHTML = cantPorProd;
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -129,21 +144,117 @@ getJSONData(CART_JSON).then(function(resultObj){
         updateTotalPrice();
     });
 
+    
+    // muestro los datos según el tipo de envío seleccionado
+    document.getElementById("TjaCred").addEventListener("click", function() {
+        let htmlContentToAppend = ``;
+        htmlContentToAppend += `
+        <br>
+        <p class="mb-3">Ingresa los datos de tu tarjeta y <span style="color:red;">selecciona la cantidad de cuotas</span> que más te convenga</p>                
+        <div class="row">
+        <div class="col-md-8 mb-3">
+          <label for="NombreTitular">Nombre del titular</label>
+          <input type="text" class="form-control" id="NombreTitular" placeholder="Nombre como figura en la tarjeta" value="" required>
+          <div class="invalid-feedback">
+            Ingresa el nombre del titular
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="NumTja">Número de la tarjeta</label>
+          <input type="number" class="form-control" id="NumTja" placeholder="" value="" min= 10000000000000 max=99999999999999 required>
+          <div class="invalid-feedback">
+            Ingresa el número de tu tarjeta
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="vtoTja">Vencimiento</label>
+          <input type="month" class="form-control" id="vtoTja" placeholder="mm/yy" value="" required>
+          <div class="invalid-feedback">
+            Ingresa el vencimiento
+          </div>
+        </div>
+        <div class="col-md-2 mb-3">
+        <label for="cvvTja">CVV</label>
+        <input type="number" class="form-control" id="cvvTja" placeholder="CVV" value="" min= 100 max=999 required>
+        <div class="invalid-feedback">
+          Ingresa el código de verificación
+        </div>
+      </div>
+        <div class="col-md-4 mb-3">
+          <label for="cuotas">Cantidad de cuotas</label>
+          <select name="Cant.cuotas" class="form-control" id="cuotas" placeholder="" value="" required>
+            <option>1 cuota</option>
+            <option>3 cuotas</option>
+            <option>6 cuotas</option>
+            <option>12 cuotas</option>
+            </select>
+          <div class="invalid-feedback">
+            Ingresa la cantidad de cuotas
+          </div>
+        </div>
+      </div><br>
+        `
+        document.getElementById("datosTjaCred").innerHTML = htmlContentToAppend;
+        document.getElementById("datosTransBanc").innerHTML = "";             
+    });
+
+    document.getElementById("TransBanc").addEventListener("click", function() {
+        let htmlContentToAppend = ``;
+        htmlContentToAppend += `
+        <br>
+        <p class="mb-3">Ingresa los datos de tu cuenta bancaria para la transferencia</p>                
+        <div class="row">
+        <div class="col-md-8 mb-3">
+          <label for="NombreTitularCuenta">Nombre del titular</label>
+          <input type="text" class="form-control" id="NombreTitularCuenta" placeholder="Nombre del titular como figura en la cuenta" value="" required>
+          <div class="invalid-feedback">
+            Ingresa el nombre del titular de la cuenta
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="PaisCuenta">País de la cuenta</label>
+            <input type="text" class="form-control" id="PaisCuenta" placeholder="Ingrese el país" value="" required>
+            <div class="invalid-feedback">
+            Ingresa el país de la cuenta
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="banco">Banco</label>
+            <select name="tuBanco" class="form-control" id="banco" placeholder="Seleccione su banco" value="" required>
+                <option defaultSelected style="color:grey;">Selecciona tu banco...</option>
+                <option>BBVA</option>
+                <option>BROU</option>
+                <option>HSBC</option>
+                <option>Itaú</option>
+                <option>Santander</option>
+                <option>Scotiabank</option>
+            </select>
+        <div class="invalid-feedback">
+          Selecciona el nombre del banco
+        </div>
+      </div>
+        <div class="col-md-4 mb-3">
+          <label for="NumTja">Número de cuenta</label>
+          <input type="number" class="form-control" id="NumTja" placeholder="" value="" min= 10000000000000 max=99999999999999 required>
+          <div class="invalid-feedback">
+            Ingresa el número de tu tarjeta
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+        <label for="tipoCuenta">Tipo de cuenta</label>
+        <select name="tipoCuenta" class="form-control" id="tipoCuenta" placeholder="Seleccione el tipo de cuenta" value="" required>
+            <option defaultSelected style="color:grey;">Selecciona el tipo de cuenta...</option>
+            <option>Caja de ahorro ($)</option>
+            <option>Caja de ahorro (USD)</option>
+            <option>Cuenta corriente ($)</option>
+            <option>Cuenta corriente (USD)</option>
+        </select>
+    <div class="invalid-feedback">
+      Selecciona el tipo de cuenta
+    </div>
+      </div><br>
+        `
+        document.getElementById("datosTransBanc").innerHTML = htmlContentToAppend; 
+        document.getElementById("datosTjaCred").innerHTML = "";
+    });
 });
-
-function actualizarBadgeCarrito(){
-
-    if(localStorage.getItem('listaCargada') != null){ 
-        listado=localStorage.getItem('listaCarrito');
-        listado= JSON.parse(listado);
-    }
-    let cantPorProd = 0;
-    for(let i = 0; i < listado.length; i++){
-        
-        let article = listado[i];
-        console.log(article);
-        cantPorProd += article.count;
-
-    }
-    document.getElementById("badgeCarrito").innerHTML = cantPorProd;
-}
