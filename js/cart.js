@@ -39,8 +39,9 @@ function showCartList(array){
                         
                     `            
         }
-        document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;  
-        document.getElementById("productPrice").innerHTML = commaSeparateNumber(subtotalProd); //subtotales          
+        document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;  //contenido del carrito
+        document.getElementById("productPrice").innerHTML = commaSeparateNumber(subtotalProd); //subtotales de la tabla final
+        actualizarBadgeCarrito() //actualiza el badge del menú desplegable          
     }
 
 
@@ -76,13 +77,14 @@ function changeArtCount(i){
     
     let valor = document.getElementById(i).value;
     let article = articlesArray[i];
-    article.count = valor;
+    article.count = parseInt(valor);
     totalPrecio = 0;
     subtotalProd = 0;
     subtotal = 0;
     showCartList(articlesArray);
-    updateTotalPrice()
-    
+    updateTotalPrice();
+    localStorage.setItem('listaCarrito', JSON.stringify(articlesArray));
+    actualizarBadgeCarrito();
 }
 
 
@@ -97,8 +99,15 @@ getJSONData(CART_JSON).then(function(resultObj){
     {
         cartObj = resultObj.data;
       
-     //   sortAndShowCategories(ORDER_ASC_BY_PRICE, productsArray);
+    
      articlesArray = cartObj.articles;
+    
+     //guardar listado en el localstorage
+     
+    localStorage.setItem('listaCarrito', JSON.stringify(articlesArray)); //este es el array que se guarda como string en el localstorage
+    localStorage.setItem('listaCargada', 'cargada'); //esta variable sirve para saber si hay un array guardado en la variable anterior, algo así como un interruptor, para no llamar a la otra variable que tiene el array cuando está vacío y evitar el error.
+         
+     //mostrar carrito
      showCartList(articlesArray);
         
     }
@@ -121,3 +130,20 @@ getJSONData(CART_JSON).then(function(resultObj){
     });
 
 });
+
+function actualizarBadgeCarrito(){
+
+    if(localStorage.getItem('listaCargada') != null){ 
+        listado=localStorage.getItem('listaCarrito');
+        listado= JSON.parse(listado);
+    }
+    let cantPorProd = 0;
+    for(let i = 0; i < listado.length; i++){
+        
+        let article = listado[i];
+        console.log(article);
+        cantPorProd += article.count;
+
+    }
+    document.getElementById("badgeCarrito").innerHTML = cantPorProd;
+}
