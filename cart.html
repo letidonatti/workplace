@@ -153,19 +153,9 @@
       </ul>
       <hr class="mb-4">
       <h5 class="mb-3">Formas de pago</h5>
+      <p id="alertError"></p> 
       <div class="d-block my-3">
-        <div class="custom-control custom-radio">
-          <input id="TjaCred" name="payType" type="radio" class="custom-control-input"  required="" >
-          <label class="custom-control-label" for="TjaCred">Tarjeta de Crédito </label>
-          <img src="img/tarjetas.png" alt="">
-          <div id="datosTjaCred"></div>
-        </div>
-        <div class="custom-control custom-radio">
-          <input id="TransBanc" name="payType" type="radio" class="custom-control-input" required="" >
-          <label class="custom-control-label" for="TransBanc">Transferencia bancaria </label>
-          <img src="img/banco.png" alt="" style="height: 25px;">
-          <div id="datosTransBanc"></div>
-        </div>
+        <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#payModal">Seleccionar forma de pago</button>
       </div>
     <hr class="mb-4">
     <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
@@ -178,6 +168,84 @@
     </div>
   </footer>
 
+<!-- modal de forma de pago -->
+<div class="modal fade" tabindex="-1" role="dialog" id="payModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Formas de Pago</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form class="needs-validation" id="pay-info">
+              <div class="form-row">
+                <div class="custom-control custom-radio">
+                  <input id="TjaCred" name="payType" type="radio" class="custom-control-input"  required="" value="Tarjeta de crédito" checked>
+                  <label class="custom-control-label" for="TjaCred">Tarjeta de Crédito </label>
+                  <img src="img/tarjetas.png" alt="">
+                  <div id="datosTjaCred">
+                  </div>
+                </div>
+              </div><br>
+              <div class="form-row">  
+                <div class="custom-control custom-radio">
+                  <input id="TransBanc" name="payType" type="radio" class="custom-control-input" required=""  value="Transferencia bancaria">
+                  <label class="custom-control-label" for="TransBanc">Transferencia bancaria </label>
+                  <img src="img/banco.png" alt="" style="height: 25px;">
+                  <div id="datosTransBanc">
+                  </div>
+                </div>
+              </div>  
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" id="aceptarPago" >Aceptar</button>
+          </form>
+        </div>
+      </div>
+      <script>
+        function enviarMetodo(){
+          let medioDePago = $('input[name="payType"]:checked').val();
+          document.getElementById("alertError").innerHTML = "Ha seleccionado pago mediante " + medioDePago + ".";
+        }
+      </script>
+    </div>
+  </div>
+</div>  
+<!-- modal de condiciones de envío -->
+<div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Condiciones de envío</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+                <h5 class="text-warning">Premium (2 a 5 días)</h5>
+                <p class="muted text-justify">Tu compra llegará en un máximo de 5 días. Este tipo de envío tiene un costo asociado del <strong>15%</strong> del costo de los productos comprados.</p>
+            </div>
+            <hr>
+            <div class="row">
+                <h5 class="text-primary">Express (5 a 8 días)</h5>
+                <p class="muted text-justify">Tu compra llegará en un plazo de 5 a 8 días. Este tipo de envío tiene un costo asociado del <strong>7%</strong> del costo de los productos comprados.</p>
+            </div>
+            <hr>
+            <div class="row">
+                <h5 class="text-secondary">Estándar (12 a 15 días)</h5>
+                <p class="muted text-justify">Tu compra llegará en un plazo de 12 a 15 días. Este tipo de envío tiene un costo asociado del <strong>5%</strong> del costo de los productos comprados.</p>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

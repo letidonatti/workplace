@@ -4,12 +4,18 @@ const CART_JSON = "https://japdevdep.github.io/ecommerce-api/cart/654.json"
 var totalPrecio = 0;
 var subtotalProd = 0;
 var envio = 0;
-var subtotal = 0;
+var subtotal = 0; 
 var articlesArray = [];
 
 function showCartList(array){
     
     let htmlContentToAppend = ``;
+    subtotalProd = 0;
+    subtotal = 0;
+
+    if (array.length == 0){
+      htmlContentToAppend = `<br><div style="text-align: center">No hay artículos seleccionados </div><br>`
+    }else{
     for(let i = 0; i < array.length; i++){
         
         let article = array[i];
@@ -34,14 +40,16 @@ function showCartList(array){
                                 <td class="align-middle align-center" style="white-space:nowrap">`+ article.currency +` `+ commaSeparateNumber(article.unitCost) +`</td>
                                 <td class="align-middle align-center"><input type="number" name="cantidad" id="${i}" onchange="changeArtCount(${i})" value="`+ article.count +`" min=0 style="width:5ch"></td>
                                 <td class="align-middle align-center" style="white-space:nowrap" id="subtotal${i}">USD `+ commaSeparateNumber(subtotal) +`</td>
-                                
+                                <td class="align-middle align-center" style="font-size: larger;"><button id="boton`+i+`" onclick="eliminarArt(`+i+`)">Eliminar</button></td>
                             </tr><br>
                         
                     `            
         }
+      }
         document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;  //contenido del carrito
         document.getElementById("productPrice").innerHTML = commaSeparateNumber(subtotalProd); //subtotales de la tabla final
-        actualizarBadgeCarrito() //actualiza el badge del menú desplegable          
+        actualizarBadgeCarrito(); //actualiza el badge del menú desplegable  
+        updateTotalPrice(); //actualizo valores de la tabla de totales        
     }
 
 
@@ -125,6 +133,8 @@ getJSONData(CART_JSON).then(function(resultObj){
      //mostrar carrito
      showCartList(articlesArray);
         
+     //muestro mensaje en Forma de Pago. Este mensaje se pisa si selecciona el medio de pago.
+    document.getElementById("alertError").innerHTML = "No ha seleccionado medio de pago.";
     }
 });
 
@@ -258,3 +268,11 @@ getJSONData(CART_JSON).then(function(resultObj){
         document.getElementById("datosTjaCred").innerHTML = "";
     });
 });
+
+function eliminarArt(i){
+
+  articlesArray.splice(i, 1);
+  showCartList(articlesArray);
+  localStorage.setItem('listaCarrito', JSON.stringify(articlesArray));
+  actualizarBadgeCarrito();
+}
