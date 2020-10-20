@@ -183,7 +183,7 @@
           <form class="needs-validation" id="pay-info">
               <div class="form-row">
                 <div class="custom-control custom-radio">
-                  <input id="TjaCred" name="payType" type="radio" class="custom-control-input"  required="" value="Tarjeta de crédito" checked>
+                  <input id="TjaCred" name="payType" type="radio" class="custom-control-input"  required="" value="Tarjeta de Crédito">
                   <label class="custom-control-label" for="TjaCred">Tarjeta de Crédito </label>
                   <img src="img/tarjetas.png" alt="">
                   <div id="datosTjaCred">
@@ -192,21 +192,23 @@
               </div><br>
               <div class="form-row">  
                 <div class="custom-control custom-radio">
-                  <input id="TransBanc" name="payType" type="radio" class="custom-control-input" required=""  value="Transferencia bancaria">
-                  <label class="custom-control-label" for="TransBanc">Transferencia bancaria </label>
+                  <input id="TransBanc" name="payType" type="radio" class="custom-control-input" required=""  value="Transferencia Bancaria">
+                  <label class="custom-control-label" for="TransBanc">Transferencia Bancaria </label>
                   <img src="img/banco.png" alt="" style="height: 25px;">
                   <div id="datosTransBanc">
                   </div>
                 </div>
-              </div>  
-                <button type="submit" class="btn btn-primary" data-dismiss="modal" id="aceptarPago" >Aceptar</button>
+              </div><br>  
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="aceptarPago" onclick="enviarMetodo();">Aceptar</button>
+              </div>
           </form>
         </div>
       </div>
       <script>
         function enviarMetodo(){
           let medioDePago = $('input[name="payType"]:checked').val();
-          document.getElementById("alertError").innerHTML = "Ha seleccionado pago mediante " + medioDePago + ".";
+          document.getElementById("alertError").innerHTML = "Ha seleccionado pagar mediante " + medioDePago + ".";
         }
       </script>
     </div>
