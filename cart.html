@@ -199,17 +199,40 @@
                   </div>
                 </div>
               </div><br>  
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="aceptarPago" onclick="enviarMetodo();">Aceptar</button>
+              <div class="modal-footer" id="pieDelModal">
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="aceptarPago" onclick="aceptarModal();">Aceptar</button>
               </div>
           </form>
         </div>
       </div>
       <script>
-        function enviarMetodo(){
+        function aceptarModal(){  
+
           let medioDePago = $('input[name="payType"]:checked').val();
-          document.getElementById("alertError").innerHTML = "Ha seleccionado pagar mediante " + medioDePago + ".";
-        }
+          
+          if (medioDePago == "Tarjeta de Crédito"){
+            let obligatorio1 = document.getElementById("NombreTitular").value;
+            let obligatorio2 = document.getElementById("NumTja").value;
+            let obligatorio3 = document.getElementById("vtoTja").value;
+            let obligatorio4 = document.getElementById("cvvTja").value;
+            
+            if (obligatorio1 != "" && obligatorio2 !="" && obligatorio3 != "" && obligatorio4 !=""){ 
+              document.getElementById("alertError").innerHTML = "Ha seleccionado pagar mediante " + medioDePago + ".";
+            };
+          };
+
+          if (medioDePago == "Transferencia Bancaria"){
+            let obligatorio5 = document.getElementById("NombreTitularCuenta").value;
+            let obligatorio6 = document.getElementById("PaisCuenta").value;
+            let obligatorio7 = document.getElementById("banco").value;
+            let obligatorio8 = document.getElementById("NumCta").value;
+            let obligatorio9 = document.getElementById("tipoCuenta").value;
+
+            if  (obligatorio5 != "" && obligatorio6 !="" && obligatorio7 != "Selecciona tu banco..." && obligatorio8 !="" && obligatorio9 !="Selecciona el tipo de cuenta..."){
+              document.getElementById("alertError").innerHTML = "Ha seleccionado pagar mediante " + medioDePago + ".";
+            };
+          };
+        }; 
       </script>
     </div>
   </div>

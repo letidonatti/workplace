@@ -112,6 +112,16 @@ function actualizarBadgeCarrito(){
     document.getElementById("badgeCarrito").innerHTML = cantPorProd;
 }
 
+// función que elimina los articulos
+function eliminarArt(i){
+
+  articlesArray.splice(i, 1);
+  showCartList(articlesArray);
+  localStorage.setItem('listaCarrito', JSON.stringify(articlesArray));
+  actualizarBadgeCarrito();
+}
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -153,10 +163,11 @@ getJSONData(CART_JSON).then(function(resultObj){
         envio = document.getElementById("standardradio").value;
         updateTotalPrice();
     });
-
     
     // muestro los datos según el tipo de envío seleccionado
     document.getElementById("TjaCred").addEventListener("click", function() {
+
+        document.getElementById("alertError").innerHTML = "No ha seleccionado medio de pago.";
         let htmlContentToAppend = ``;
         htmlContentToAppend += `
         <br>
@@ -204,11 +215,14 @@ getJSONData(CART_JSON).then(function(resultObj){
         </div>
       </div><br>
         `
+        
         document.getElementById("datosTjaCred").innerHTML = htmlContentToAppend;
-        document.getElementById("datosTransBanc").innerHTML = "";             
+        document.getElementById("datosTransBanc").innerHTML = "";       
     });
 
     document.getElementById("TransBanc").addEventListener("click", function() {
+
+        document.getElementById("alertError").innerHTML = "No ha seleccionado medio de pago.";
         let htmlContentToAppend = ``;
         htmlContentToAppend += `
         <br>
@@ -244,8 +258,8 @@ getJSONData(CART_JSON).then(function(resultObj){
         </div>
       </div>
         <div class="col-md-4 mb-3">
-          <label for="NumTja">Número de cuenta</label>
-          <input type="number" class="form-control" id="NumTja" placeholder="" value="" min= 10000000000000 max=99999999999999 required>
+          <label for="NumCta">Número de cuenta</label>
+          <input type="number" class="form-control" id="NumCta" placeholder="" value="" min= 10000000000000 max=99999999999999 required>
           <div class="invalid-feedback">
             Ingresa el número de tu tarjeta
           </div>
@@ -264,15 +278,9 @@ getJSONData(CART_JSON).then(function(resultObj){
     </div>
       </div><br>
         `
+        
         document.getElementById("datosTransBanc").innerHTML = htmlContentToAppend; 
         document.getElementById("datosTjaCred").innerHTML = "";
+        
     });
 });
-
-function eliminarArt(i){
-
-  articlesArray.splice(i, 1);
-  showCartList(articlesArray);
-  localStorage.setItem('listaCarrito', JSON.stringify(articlesArray));
-  actualizarBadgeCarrito();
-}
