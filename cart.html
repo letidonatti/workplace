@@ -209,7 +209,7 @@
         function aceptarModal(){  
 
           let medioDePago = $('input[name="payType"]:checked').val();
-          
+
           if (medioDePago == "Tarjeta de Crédito"){
             let obligatorio1 = document.getElementById("NombreTitular").value;
             let obligatorio2 = document.getElementById("NumTja").value;
@@ -217,7 +217,7 @@
             let obligatorio4 = document.getElementById("cvvTja").value;
             
             if (obligatorio1 != "" && obligatorio2 !="" && obligatorio3 != "" && obligatorio4 !=""){ 
-              document.getElementById("alertError").innerHTML = "Ha seleccionado pagar mediante " + medioDePago + ".";
+              document.getElementById("alertError").innerHTML = `Ha seleccionado pagar mediante <span style="color:green;font-weight: bold;">` + medioDePago + `</span>.`;
             };
           };
 
@@ -229,7 +229,7 @@
             let obligatorio9 = document.getElementById("tipoCuenta").value;
 
             if  (obligatorio5 != "" && obligatorio6 !="" && obligatorio7 != "Selecciona tu banco..." && obligatorio8 !="" && obligatorio9 !="Selecciona el tipo de cuenta..."){
-              document.getElementById("alertError").innerHTML = "Ha seleccionado pagar mediante " + medioDePago + ".";
+              document.getElementById("alertError").innerHTML = `Ha seleccionado pagar mediante <span style="color:green;font-weight: bold;">` + medioDePago + `</span>.`;
             };
           };
         }; 

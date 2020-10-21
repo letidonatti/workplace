@@ -167,7 +167,7 @@ getJSONData(CART_JSON).then(function(resultObj){
     // muestro los datos según el tipo de envío seleccionado
     document.getElementById("TjaCred").addEventListener("click", function() {
 
-        document.getElementById("alertError").innerHTML = "No ha seleccionado medio de pago.";
+        document.getElementById("alertError").innerHTML = `No ha confirmado el medio de pago: <span style="color:red;">Por favor verifique haber ingresado todos los datos requeridos.</span>`;
         let htmlContentToAppend = ``;
         htmlContentToAppend += `
         <br>
@@ -222,7 +222,7 @@ getJSONData(CART_JSON).then(function(resultObj){
 
     document.getElementById("TransBanc").addEventListener("click", function() {
 
-        document.getElementById("alertError").innerHTML = "No ha seleccionado medio de pago.";
+        document.getElementById("alertError").innerHTML = `No ha confirmado el medio de pago: <span style="color:red;">Por favor verifique haber ingresado todos los datos requeridos.</span>`;
         let htmlContentToAppend = ``;
         htmlContentToAppend += `
         <br>
