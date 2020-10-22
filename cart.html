@@ -171,10 +171,11 @@
       window.addEventListener('load', function() {
         
         var forms = document.getElementsByClassName('needs-validation');
+        var pagoModal = document.getElementById('alertError');
         
         var validation = Array.prototype.filter.call(forms, function(form) {
           form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
+            if ((form.checkValidity() === false) || (pagoModal.innerHTML === "No ha seleccionado medio de pago.")) {
               event.preventDefault();
               event.stopPropagation();
               Swal.fire({
@@ -183,7 +184,7 @@
                 text: 'Por favor verifica haber completado todos los campos del formulario.',
               })
             }
-            if (form.checkValidity() === true){
+            if ((form.checkValidity() === true) && (pagoModal.innerHTML != "No ha seleccionado medio de pago.")){
               event.preventDefault();
               Swal.fire({
                 title: '¡Tu compra ha sido exitosa!',
