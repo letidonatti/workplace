@@ -40,7 +40,7 @@ function showCartList(array){
                                 <td class="align-middle align-center" style="white-space:nowrap">`+ article.currency +` `+ commaSeparateNumber(article.unitCost) +`</td>
                                 <td class="align-middle align-center"><input type="number" name="cantidad" id="${i}" onchange="changeArtCount(${i})" value="`+ article.count +`" min=0 style="width:5ch"></td>
                                 <td class="align-middle align-center" style="white-space:nowrap" id="subtotal${i}">USD `+ commaSeparateNumber(subtotal) +`</td>
-                                <td class="align-middle align-center" style="font-size: larger;"><button id="boton`+i+`" onclick="eliminarArt(`+i+`)">Eliminar</button></td>
+                                <td class="align-middle align-center" style="font-size: larger;"><button class="btn btn-link fas fa-trash" id="boton`+i+`" onclick="eliminarArt(`+i+`)"></button></td>
                             </tr><br>
                         
                     `            
