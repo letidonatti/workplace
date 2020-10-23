@@ -14,7 +14,15 @@ function showCartList(array){
     subtotal = 0;
 
     if (array.length == 0){
-      htmlContentToAppend = `<br><div style="text-align: center">No hay artículos seleccionados </div><br>`
+      htmlContentToAppend = `<br>
+                            
+                                <div class="container">
+                                    <div class="order-md-1" style="border-color: rgb(255, 238, 186);background-color: rgb(255, 243, 205);">
+                                        <h4 style="text-align: center">El carrito está vacío.</h4>
+                                        <p class="lead" style="text-align: center"><a href="categories.html">¡Vamos de compras!</a></p>
+                                    </div>
+                                </div>
+                            `
     }else{
     for(let i = 0; i < array.length; i++){
         
@@ -38,9 +46,19 @@ function showCartList(array){
                                 <td class="align-middle align-center" scope="row"><img style="height:8em" src="` + article.src + `" alt=" " class="img-thumbnail"></td>
                                 <td class="align-middle align-center" style="font-size: larger;">`+ article.name +`</td>
                                 <td class="align-middle align-center" style="white-space:nowrap">`+ article.currency +` `+ commaSeparateNumber(article.unitCost) +`</td>
-                                <td class="align-middle align-center"><input type="number" name="cantidad" id="${i}" onchange="changeArtCount(${i})" value="`+ article.count +`" min=0 style="width:5ch"></td>
-                                <td class="align-middle align-center" style="white-space:nowrap" id="subtotal${i}">USD `+ commaSeparateNumber(subtotal) +`</td>
-                                <td class="align-middle align-center" style="font-size: larger;"><button class="btn btn-link fas fa-trash" id="boton`+i+`" onclick="eliminarArt(`+i+`)"></button></td>
+                                <td class="align-middle align-center">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default btn-outline-info" type="button" id="resta${i}" onclick="restarArt(`+i+`);">-</button>
+                                        </span>
+                                        <input type="number" class="inputSinFlecha form-control" name="cantidad" id="${i}" onchange="changeArtCount(${i})" value="`+ article.count +`" min=1 style="width:1ch;text-align: center;">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default btn-outline-info" type="button" id="suma${i}" onclick="sumarArt(`+i+`);">+</button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="align-middle align-center" style="white-space:nowrap; font-weight: bold;" id="subtotal${i}">USD `+ commaSeparateNumber(subtotal) +`</td>
+                                <td class="align-middle align-center" style="font-size: xx-large;"><button class="btn btn-link fas fa-trash" id="boton`+i+`" onclick="eliminarArt(`+i+`)"></button></td>
                             </tr><br>
                         
                     `            
@@ -52,10 +70,22 @@ function showCartList(array){
         updateTotalPrice(); //actualizo valores de la tabla de totales        
     }
 
+function restarArt(i){
 
+    let cantidad = document.getElementById(i).value;
+    if (cantidad > 1){
+    document.getElementById(i).value = parseInt(cantidad) - 1;
+    changeArtCount(i);
+    }
+}
+function sumarArt(i){
+
+    let cantidad = document.getElementById(i).value;
+    document.getElementById(i).value = parseInt(cantidad) + 1;
+    changeArtCount(i);
+}
 
 // función que calcula los subtotales según el precio, la moneda y la cantidad de artículos
-
 function subTotalArt(moneda, precio, cantidad){
     if (moneda===PESOS){
         precio=precio/COTIZACION;
@@ -167,7 +197,8 @@ getJSONData(CART_JSON).then(function(resultObj){
     // muestro los datos según el tipo de envío seleccionado
     document.getElementById("TjaCred").addEventListener("click", function() {
 
-        document.getElementById("alertError").innerHTML = `No ha confirmado el medio de pago: <span style="color:red;">Por favor verifique haber ingresado todos los datos requeridos.</span>`;
+        document.getElementById("alertError").innerHTML = "No ha seleccionado medio de pago.";
+        document.getElementById("alertVerificacion").innerHTML = `<span style="color:red;">Por favor verifique haber ingresado todos los datos requeridos.</span>`;
         let htmlContentToAppend = ``;
         htmlContentToAppend += `
         <br>
@@ -210,7 +241,8 @@ getJSONData(CART_JSON).then(function(resultObj){
 
     document.getElementById("TransBanc").addEventListener("click", function() {
 
-        document.getElementById("alertError").innerHTML = `No ha confirmado el medio de pago: <span style="color:red;">Por favor verifique haber ingresado todos los datos requeridos.</span>`;
+        document.getElementById("alertError").innerHTML = "No ha seleccionado medio de pago.";
+        document.getElementById("alertVerificacion").innerHTML = `<span style="color:red;">Por favor verifique haber ingresado todos los datos requeridos.</span>`;
         let htmlContentToAppend = ``;
         htmlContentToAppend += `
         <br>

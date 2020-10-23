@@ -150,6 +150,14 @@ label:hover ~ label {
 input[type="radio"]:checked ~ label {
   color: orange;
 }
+/* -------------------------------------------------------------------------------------- */
+/* PANTALLA DEL CARRITO */
+/* para sacarle las flechas al input tipo: number */
+.inputSinFlecha::-webkit-inner-spin-button, 
+.inputSinFlecha::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
 /*------------------------------------------------------------*/
 /* Formatos que ya existían */

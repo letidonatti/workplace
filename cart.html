@@ -31,7 +31,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a4ade8a60a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  
 </head>
 
 <body>
@@ -158,6 +159,7 @@
       <hr class="mb-4">
       <h5 class="mb-3">Formas de pago</h5>
       <p id="alertError"></p> 
+      <p id="alertVerificacion"></p> 
       <div class="d-block my-3">
         <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#payModal">Seleccionar forma de pago</button>
       </div>
@@ -261,6 +263,7 @@
             
             if (obligatorio1 != "" && obligatorio2 !="" && obligatorio3 != "" && obligatorio4 !=""){ 
               document.getElementById("alertError").innerHTML = `Ha seleccionado pagar mediante <span style="color:green;font-weight: bold;">` + medioDePago + `</span>.`;
+              document.getElementById("alertVerificacion").innerHTML = "";//silencio el mensaje de validación de campos
             };
           };
 
@@ -273,6 +276,7 @@
 
             if  (obligatorio5 != "" && obligatorio6 !="" && obligatorio7 != "Selecciona tu banco..." && obligatorio8 !="" && obligatorio9 !="Selecciona el tipo de cuenta..."){
               document.getElementById("alertError").innerHTML = `Ha seleccionado pagar mediante <span style="color:green;font-weight: bold;">` + medioDePago + `</span>.`;
+              document.getElementById("alertVerificacion").innerHTML = "";//silencio el mensaje de validación de campos
             };
           };
         }; 
