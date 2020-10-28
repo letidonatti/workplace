@@ -14,6 +14,7 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
+    
     <nav class="site-header sticky-top py-1 bg-dark">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 d-none d-md-inline-block" href="cover.html">Inicio</a>
@@ -47,58 +48,63 @@
       
       <!--filtros por precio y relevancia-->
       <div class="row">
-        <div class="col text-right" style="margin-right:100px">
-            <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+        <div class="col-md-8"></div>
+        <div class="col-md-4 text-right">
+            <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
                 <label class="btn btn-light active" id="sortAsc" >
-                    <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-sort-amount-up mr-1"></i>Precio
+                    <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-sort-amount-up mr-1"></i><span class="d-none d-lg-block">Precio</span>
                 </label>
                 <label class="btn btn-light" id="sortDesc" >
-                    <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Precio
+                    <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i><span class="d-none d-lg-block">Precio</span>
                 </label>
                 <label class="btn btn-light" id="sortByPrice" >
-                    <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Recomendados
+                    <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i><span class="d-none d-lg-block">Recomendados</span>
                 </label>
             </div>
         </div>
       </div>
     
-    
-    <div class="row justify-content-end" style="margin-right:100px">
+  <div class="container">
+    <div class="row">
       <div class="col-md-6">
         <!-- campo de búsqueda -->
-        <div class="form-control" style="width:300px; margin-left:105px; white-space:nowrap;" id="busqueda">
+        <div class="form-control mb-2" style="width:300px; white-space:nowrap;" id="busqueda">
           <img src="img/lupa.jpg" alt="">
           <input type="search" id="search" placeholder="Buscar..." style="border: none; outline: 0;"/>
         </div>
       </div>
+      
       <!--filtros por precio-->
-        <div class="col-md-6 col-sm-12 mb-1 container">
-          <div class="row container p-0 m-0">
-            <div class="col">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col d-none d-lg-block">
               <p class="font-weight-normal text-right my-2">Precio</p>
             </div>
             <div class="col">
-              <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin" style="width:100px;">
+              <input class="form-control" type="number" placeholder="min." id="rangeFilterPriceMin" style="width:110px;">            
             </div>
-            <div class="col">
-              <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax" style="width:100px;">
+            <div class="col p-0">
+              <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax" style="width:110px;">
             </div>
             <div class="col-3 p-0">
               <div class="btn-group" role="group">
-                <button class="btn btn-light btn-block" id="rangeFilterPrice">Filtrar</button>
-                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                <button class="btn btn-light" id="rangeFilterPrice"><i class="fas fa-funnel-dollar d-lg-none"></i><span class="d-none d-lg-block">Filtro</span></button>
+                <button class="btn btn-light" id="clearRangeFilter"><i class="fas fa-eraser d-lg-none"></i><span class="d-none d-lg-block">Limpiar</span></button>
               </div>
             </div>
           </div>
         </div>
     </div>
+  </div>
+    <div class="album py-5 bg-light">
       <div class="container">
-          <div class="row">
-              <div class="list-group" id="cat-list-container">
-                
+        <div class="row">  
+              <div class="row" id="cat-list-container">
+                <!-- acá se cargan los productos -->
               </div>
-          </div>
+        </div>
       </div>
+    </div>
     </main>
     <footer class="text-muted bg-light">
       <div class="container">

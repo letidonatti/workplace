@@ -50,20 +50,18 @@ function showProductsList(array){
         ((maxPrice == undefined) || (maxPrice != undefined && (product.cost) <= maxPrice))){
 
         htmlContentToAppend += `
-        <a href="product-info.html" class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="` + product.imgSrc + `" alt=" " class="img-thumbnail">
+        <div class="col-sm-4">
+        <a href="product-info.html" class="card mb-4 shadow-md custom-card">
+                
+                <img src="` + product.imgSrc + `" alt=" " class="bd-placeholder-img card-img-top">
+                <h3 class="m-3">`+ product.name +`</h3>
+                <div class="card-body">
+                    <h4 class="card-text">`+ product.currency +` `+ commaSeparateNumber(product.cost) +`</h4>
+                    <p>` + product.description + `</p>
+                    <span style="font-size: smaller; font-style: italic;" >` + product.soldCount + ` vendidos </span>
                 </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">`+ product.name +` - `+ product.currency +` `+ commaSeparateNumber(product.cost) +`<br></h4>
-                    </div>
-                <div><p>` + product.description + `</p></div>
-                </div>
-                <div style="font-size: smaller; font-style: italic;" >` + product.soldCount + ` vendidos </div>
-            </div>
         </a>
+        </div>
         `
         }
     if (htmlContentToAppend != ""){
