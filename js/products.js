@@ -67,13 +67,22 @@ function showProductsList(array){
     if (htmlContentToAppend != ""){
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     } else{
-        htmlContentToAppend += `<div class="col-md-6 text-center p-4">
-                                    
-                                        <br> No se encontraron productos que coincidan con su búsqueda. 
-                                        <br> Inténtelo nuevamente.<br>
-                                    
+        
+        document.getElementById("cat-list-container").innerHTML = `
+                                
+                                <div class="col-sm-6 p-4 d-lg-none"> 
+                                                                                                                                          
+                                <br> No se encontraron productos que coincidan con su búsqueda. 
+                                <br> Inténtelo nuevamente.<br>
+                            
+                                </div>
+                                
+                                <div class="row d-none d-lg-block"> 
+                                
+                                <br> No se encontraron productos que coincidan con su búsqueda. 
+                                <br> Inténtelo nuevamente.<br>
+                            
                                 </div>`;
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
     
  }; 
@@ -178,7 +187,19 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (filtroProductos.length != 0){
         showProductsList(filtroProductos);
         }else{
-            document.getElementById("cat-list-container").innerHTML = '<br><br> No se encontraron productos que coincidan con su búsqueda. <br> Inténtelo nuevamente.<br>';
+            document.getElementById("cat-list-container").innerHTML = `<div class="col-sm-6 p-4 d-lg-none"> 
+                                                                        
+                                                                        <br> No se encontraron productos que coincidan con su búsqueda. 
+                                                                        <br> Inténtelo nuevamente.<br>
+                                                                    
+                                                                        </div>
+                                                                        <div class="row d-none d-lg-block"> 
+                                                                        
+                                                                        <br> No se encontraron productos que coincidan con su búsqueda. 
+                                                                        <br> Inténtelo nuevamente.<br>
+                                                                    
+                                                                        </div>
+                                                                        `;
         };
     });
 }); 
