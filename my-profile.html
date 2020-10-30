@@ -46,7 +46,7 @@
         <a class="py-2 d-none d-md-inline-block dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="userLogueado" style="color:white;"></a>
         <!-- puntos del menú: por ahora solo funciona el cerrar sesión,y la redirección del carrito -->
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Mi perfil</a>
+            <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
             <a class="dropdown-item" href="cart.html">Mi carrito</a>
             <a class="dropdown-item" onclick="olvidar();" href="index.html">Cerrar Sesión</a>
           </div>
@@ -59,14 +59,123 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
+  <main>
+	<div class="container d-flex flex-column flex-md-row justify-content-center">
+		
+			<div class="col-4">
+					<div class="row">
+						<div class="bg-light rounded mt-5 mb-2 text-align-center shadow-lg p-3 mb-5 bg-white">
+							<h3 id="usuarioLogueado" class="text-center"></h3>
+							<p class="text-center">
+							<button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#passwordModal"><small>Cambiar Contraseña</small></button>
+							
+							</p>
+							<div class="text-center">
+							<img src="https://es.calcuworld.com/wp-content/uploads/sites/2/2019/09/generador-de-nombres-de-usuario.png" class="rounded-circle" style="width:70%;" alt="Foto de Perfil" >
+							</div>
+							<br>
+							<div class="row justify-content-center">
+								<button id="cargarFoto" class="boton mt-2" type="button">Cambiar imagen</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="bg-light shadow-lg p-3 mb-5 bg-white rounded">
+							<h5>Últimas compras</h5>
+							<div id="ultimasCompras">
+								<div class="container align-middle align-center">
+									<div class="row">
+										<div id="cart-list-container" style="width:30%;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="col-6">
+				<div class="bg-light shadow-lg p-3 mb-5 bg-white rounded mt-5">
+					<h3>Editar Perfil</h3>
+					<form class="needs-validation" novalidate id="send-info">
+						<div class="row">
+						  <div class="col-md-6 mb-3">
+							<label for="PrimerNom">Primer Nombre</label>
+							<input type="text" class="form-control" id="PrimerNom" placeholder="" value="" required>
+							<div class="invalid-feedback">
+							  Ingresa tu primer nombre
+							</div>
+						  </div>
+						  <div class="col-md-6 mb-3">
+							<label for="SegundoNom">Segundo Nombre</label>
+							<input type="text" class="form-control" id="SegundoNom" placeholder="" value="" required>
+							<div class="invalid-feedback">
+							  Ingresa tu segundo nombre
+							</div>
+						  </div>
+						</div>
+						<div class="row">
+						  <div class="col-md-6 mb-3">
+							<label for="PrimerApe">Primer Apellido</label>
+							<input type="text" class="form-control" id="PrimerApe" placeholder="" value="" required>
+							<div class="invalid-feedback">
+							  Ingresa tu primer apellido
+							</div>
+						  </div>
+						  <div class="col-md-6 mb-3">
+							<label for="SegundoApe">Segundo Apellido</label>
+							<input type="text" class="form-control" id="SegundoApe" placeholder="" value="" required>
+							<div class="invalid-feedback">
+							  Ingresa tu segundo apellido
+							</div>
+						  </div>
+						</div>
+						<div class="row">
+						  <div class="col-md-3 mb-3">
+							<label for="edad">Edad</label>
+							<input type="number" class="form-control" id="edad" placeholder="" value="" min="1" max="110" required>
+							<div class="invalid-feedback">
+							  Ingresa tu edad
+							</div>
+						  </div>
+						  <div class="col-md-6 mb-3">
+							<label for="fechaNac">Fecha de nacimiento</label>
+							<input type="date" class="form-control" id="fechaNac" placeholder="" value="" min="1910-01-01" max="2020-10-31" required>
+							<div class="invalid-feedback">
+							  Ingresa tu fecha de nacimiento
+							</div>
+						  </div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 mb-3">
+								<label for="telef">Teléfono/Celular</label>
+								<input type="tel" class="form-control" id="telef" placeholder="" value="" required>
+								<div class="invalid-feedback">
+								  Ingresa tu número de teléfono o celular
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+							<label for="email">Correo electrónico</label>
+							<input type="email" class="form-control" id="email" placeholder="" value="" required>
+							<div class="invalid-feedback">
+							  Ingresa tu e-mail
+							</div>
+						  </div>
+						</div>
+						<div class="row justify-content-end">
+							<button id="guardarInfo" class="boton" type="submit">Actualizar datos</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		
+	</div>	
+		
+	
+	<script>//obtengo el usuario ingresado en el login
+        var nomDeUsuer = localStorage.getItem("usuario");
+		document.getElementById("usuarioLogueado").innerHTML= `<b>`+ nomDeUsuer + `</b>`;
+    </script>
+  </main>
+  
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
@@ -79,6 +188,43 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  
+  <!-- modal de cambio de contraseña -->
+<div class="modal fade" tabindex="-1" role="dialog" id="passwordModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cambio de contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+				<label for="OldPass">Contraseña actual</label>
+				<input type="password" class="form-control" id="OldPass" placeholder="" value="" required>
+				<div class="invalid-feedback">
+				  Ingresa tu contraseña actual
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<label for="NewPass">Nueva contraseña</label>
+				<input type="password" class="form-control" id="NewPass" placeholder="" value="" required>
+				<div class="invalid-feedback">
+				  Ingresa la nueva contraseña
+				</div>
+		    </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary boton" data-dismiss="modal">Actualizar datos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
