@@ -70,6 +70,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
   background-color: rgb(206, 48, 82);
 }
 
+.navegacionL{
+  margin-left: 70px;
+}
+
+/* .navegacionR{
+  margin-right: 100px;
+} */
 /* -------------------------------------------------------------------------------------- */
 /* MODAL DE BIENVENIDA */
 /* formato de la ventana modal */

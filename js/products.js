@@ -67,7 +67,13 @@ function showProductsList(array){
     if (htmlContentToAppend != ""){
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     } else{
-        document.getElementById("cat-list-container").innerHTML = '<br><br> No se encontraron productos que coincidan con su búsqueda. <br> Inténtelo nuevamente.<br>';
+        htmlContentToAppend += `<div class="col-md-6 text-center p-4">
+                                    
+                                        <br> No se encontraron productos que coincidan con su búsqueda. 
+                                        <br> Inténtelo nuevamente.<br>
+                                    
+                                </div>`;
+        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
     
  }; 
