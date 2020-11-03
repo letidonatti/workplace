@@ -71,11 +71,11 @@
 							
 							</p>
 							<div class="text-center">
-							<img src="https://es.calcuworld.com/wp-content/uploads/sites/2/2019/09/generador-de-nombres-de-usuario.png" class="rounded-circle" style="width:70%;" alt="Foto de Perfil" >
+							<img src="https://i.ibb.co/zXq0cMq/myavatar.png" class="rounded-circle" style="width:70%;" alt="Foto de Perfil" id="fotoPerfil">
 							</div>
 							<br>
 							<div class="row justify-content-center">
-								<button id="cargarFoto" class="boton mt-2" type="button">Cargar imagen</button>
+								<button class="boton mt-2" type="button" data-toggle="modal" data-target="#cargarFoto">Cargar foto de perfil</button>
 							</div>
 						</div>
 					</div>
@@ -223,6 +223,74 @@
       </div>
     </div>
   </div>
+  <script>
+  //guarda la contraseña nueva
+	function guardarPass(){
+	
+	var newpass = document.getElementById("NewPass").value
+	var oldpass = localStorage.getItem("contraseña");
+	
+    if (newpass != '' && newpass != oldpass){
+        //para ver si la nueva contraseña cumple con la longitud deseada
+        if (newpass.length < 1 && newpass.length > 10){
+            newpass.classList.add("invalid-feedback")
+		}else{
+		//guardo la nueva contraseña en el localstorage
+		localStorage.setItem("contraseña", newpass);
+		}
+	} 
+  </script>
+</div>
+
+<!-- modal de subida de imagen -->
+<div class="modal fade" tabindex="-1" role="dialog" id="cargarFoto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cargar foto de perfil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+				<div class="bg-light rounded mt-3 mb-3 mx-auto">
+					<div class="mx-auto text-center">
+						<img src="https://i.ibb.co/zXq0cMq/myavatar.png" class="rounded-circle" style="width:70%;" alt="Previsualización de imagen" id="prevImg">
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<label for="urlImg">URL de la imagen: </label>
+				<input type="url" class="form-control" id="urlImg" placeholder="Ingresa la URL de la imagen" value="" required>
+				<div class="invalid-feedback">
+				  Ingresa la dirección de la foto con formato URL
+				</div>
+			</div>
+			<br>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary boton" onclick="cargarNuevaFoto();" data-dismiss="modal">Cargar foto</button>
+      </div>
+    </div>
+  </div>
+  <script>
+  //para mostrar una previsualización de la imagen
+	document.getElementById("urlImg").addEventListener("change", function() {
+	
+		var urlFoto = document.getElementById("urlImg").value;
+		document.getElementById("prevImg").src = urlFoto;
+	});
+	
+	function cargarNuevaFoto(){
+
+	var urlFoto = document.getElementById("urlImg").value;
+	document.getElementById("fotoPerfil").src = urlFoto;
+	}
+  </script>
 </div>
 
   <div id="spinner-wrapper">
