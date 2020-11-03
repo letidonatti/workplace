@@ -12,9 +12,9 @@ function actualizarUltCompras(){
 			
 			let article = listado[i];
 			htmlContentToAppend += `
-				<div class="col">
-					<img src="` + article.src + `" alt=" " class="img-thumbnail mh-5">
-				</div>
+				
+					<img src="` + article.src + `" alt=" " class="img-thumbnail">
+				
 			 `
 		}
 	}else{
@@ -38,7 +38,10 @@ function cargarUsuario(){
 			document.getElementById("edad").value = perfil.edad;
 			document.getElementById("telef").value = perfil.telefono;
 			document.getElementById("email").value = perfil.correo;
+			document.getElementById("fotoPerfil").src = perfil.img;
+			document.getElementById("prevImg").src = perfil.img;
 	}
+	
 }
 
 
@@ -67,9 +70,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			}
 			localStorage.setItem('perfilUsu', JSON.stringify(perfil)); //este es el objeto que se guarda como string en el localstorage
 			localStorage.setItem('UsuCargado', 'cargado'); //esta variable sirve para saber si hay un objeto guardado en la variable anterior, algo así como un interruptor, para no llamar a la otra variable que tiene el objeto cuando está vacío y evitar el error.
-			}
 	
-	
+		});	
 		
 });
 

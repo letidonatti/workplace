@@ -54,7 +54,12 @@
 
       <script>//obtengo el usuario ingresado en el login
         var nomDeUsuer = localStorage.getItem("usuario");
-        document.getElementById("userLogueado").innerHTML= 'Hola, ' + nomDeUsuer;
+		document.getElementById("userLogueado").innerHTML= 'Hola, ' + nomDeUsuer;
+		
+		//cerrar sesión
+		function olvidar(){
+        localStorage.clear();
+      };
       </script>
       </div>
     </div>
@@ -64,31 +69,23 @@
 		
 			<div class="col-4">
 					<div class="row">
-						<div class="bg-light rounded mt-5 mb-2 text-align-center shadow-lg p-3 mb-5 bg-white">
+						<div class="bg-light rounded text-align-center shadow-lg mt-5 p-3 mb-2 bg-white">
 							<h3 id="usuarioLogueado" class="text-center"></h3>
 							<p class="text-center">
-							<button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#passwordModal"><small>Cambiar Contraseña</small></button>
-							
+								<button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#passwordModal"><small>Cambiar Contraseña</small></button>
 							</p>
 							<div class="text-center">
-							<img src="https://i.ibb.co/zXq0cMq/myavatar.png" class="rounded-circle" style="width:70%;" alt="Foto de Perfil" id="fotoPerfil">
+								<img src="" class="rounded-circle" style="width:70%;" alt="Foto de Perfil" id="fotoPerfil">
 							</div>
 							<br>
 							<div class="row justify-content-center">
 								<button class="boton mt-2" type="button" data-toggle="modal" data-target="#cargarFoto">Cargar foto de perfil</button>
 							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="bg-light shadow-lg p-3 mb-5 bg-white rounded">
+							<br>
 							<h5>Últimas compras</h5>
-							<div id="ultimasCompras">
 								<div class="container align-middle align-center">
-									<div class="row">
-										<div id="cart-list-container" style="width:30%;"></div>
-									</div>
+									<div id="cart-list-container" style="width:25%;"></div>
 								</div>
-							</div>
 						</div>
 					</div>
 			</div>
@@ -96,6 +93,7 @@
 				<div class="bg-light shadow-lg p-3 mb-5 bg-white rounded mt-5">
 					<h3>Editar Perfil</h3>
 					<form class="needs-validation" novalidate id="send-info">
+						<br>
 						<div class="row">
 						  <div class="col-md-6 mb-3">
 							<label for="PrimerNom">Primer Nombre</label>
@@ -111,7 +109,7 @@
 							  Ingresa tu segundo nombre
 							</div>
 						  </div>
-						</div>
+						</div><br>
 						<div class="row">
 						  <div class="col-md-6 mb-3">
 							<label for="PrimerApe">Primer Apellido</label>
@@ -127,7 +125,7 @@
 							  Ingresa tu segundo apellido
 							</div>
 						  </div>
-						</div>
+						</div><br>
 						<div class="row">
 						  <div class="col-md-6 mb-3">
 							<label for="fechaNac">Fecha de nacimiento</label>
@@ -143,7 +141,7 @@
 							  Ingresa tu edad
 							</div>
 						  </div>
-						</div>
+						</div><br>
 						<div class="row">
 							<div class="col-md-4 mb-3">
 								<label for="telef">Teléfono/Celular</label>
@@ -159,7 +157,7 @@
 							  Ingresa tu e-mail
 							</div>
 						  </div>
-						</div>
+						</div><br>
 						<div class="row justify-content-end">
 							<button id="guardarInfo" class="boton" type="submit">Actualizar datos</button>
 						</div>
@@ -182,12 +180,7 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
-    <span id="resultSpan"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+  
   
   <!-- modal de cambio de contraseña -->
 <div class="modal fade" tabindex="-1" role="dialog" id="passwordModal">
@@ -227,18 +220,19 @@
   //guarda la contraseña nueva
 	function guardarPass(){
 	
-	var newpass = document.getElementById("NewPass").value
-	var oldpass = localStorage.getItem("contraseña");
-	
-    if (newpass != '' && newpass != oldpass){
-        //para ver si la nueva contraseña cumple con la longitud deseada
-        if (newpass.length < 1 && newpass.length > 10){
-            newpass.classList.add("invalid-feedback")
-		}else{
-		//guardo la nueva contraseña en el localstorage
-		localStorage.setItem("contraseña", newpass);
-		}
-	} 
+		var newpass = document.getElementById("NewPass").value
+		var oldpass = localStorage.getItem("contraseña");
+		
+		if (newpass != '' && newpass != oldpass){
+			//para ver si la nueva contraseña cumple con la longitud deseada
+			if (newpass.length < 1 && newpass.length > 10){
+				newpass.classList.add("invalid-feedback")
+			}else{
+			//guardo la nueva contraseña en el localstorage
+			localStorage.setItem("contraseña", newpass);
+			}
+		} 
+	}
   </script>
 </div>
 
@@ -257,7 +251,7 @@
             <div class="row">
 				<div class="bg-light rounded mt-3 mb-3 mx-auto">
 					<div class="mx-auto text-center">
-						<img src="https://i.ibb.co/zXq0cMq/myavatar.png" class="rounded-circle" style="width:70%;" alt="Previsualización de imagen" id="prevImg">
+						<img src="" class="rounded-circle" style="width:70%;" alt="Previsualización de imagen" id="prevImg">
 					</div>
 				</div>
 			</div>
@@ -278,17 +272,23 @@
     </div>
   </div>
   <script>
+	document.getElementById("cargarFoto").addEventListener("loaded", function() {
+
+		let fotoPerfil = document.getElementById("urlImg").value;
+		document.getElementById("prevImg").src = fotoPerfil;
+	});
   //para mostrar una previsualización de la imagen
 	document.getElementById("urlImg").addEventListener("change", function() {
 	
 		var urlFoto = document.getElementById("urlImg").value;
 		document.getElementById("prevImg").src = urlFoto;
 	});
-	
+	//para cargar la nueva foto
 	function cargarNuevaFoto(){
 
 	var urlFoto = document.getElementById("urlImg").value;
-	document.getElementById("fotoPerfil").src = urlFoto;
+	if (urlFoto != ""){
+	document.getElementById("fotoPerfil").src = urlFoto;}
 	}
   </script>
 </div>

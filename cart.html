@@ -48,7 +48,7 @@
         <a class="py-2 d-none d-md-inline-block dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="userLogueado" style="color:white;"></a>
         <!-- puntos del menú: por ahora solo funciona el cerrar sesión,y la redirección del carrito -->
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Mi perfil</a>
+            <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
             <a class="dropdown-item" href="cart.html">Mi carrito  <span class="badge badge-pill badge-primary" id="badgeCarrito"></span></a>
             <a class="dropdown-item" onclick="olvidar();" href="index.html">Cerrar Sesión</a>
           </div>
@@ -57,6 +57,11 @@
       <script>//obtengo el usuario ingresado en el login
         var nomDeUsuer = localStorage.getItem("usuario");
         document.getElementById("userLogueado").innerHTML= 'Hola, ' + nomDeUsuer;
+
+        //cerrar sesión
+		    function olvidar(){
+         localStorage.clear();
+        };
       </script>
       </div>
   </nav>
