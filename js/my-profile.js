@@ -63,10 +63,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				edad : document.getElementById("edad").value,
 				telefono : document.getElementById("telef").value,
 				correo : document.getElementById("email").value,
+				img : document.getElementById("urlImg").value,
 			}
 			localStorage.setItem('perfilUsu', JSON.stringify(perfil)); //este es el objeto que se guarda como string en el localstorage
 			localStorage.setItem('UsuCargado', 'cargado'); //esta variable sirve para saber si hay un objeto guardado en la variable anterior, algo así como un interruptor, para no llamar a la otra variable que tiene el objeto cuando está vacío y evitar el error.
 			}
+	
+	
+		
 });
 
 /*<script>
