@@ -42,7 +42,7 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <div> <!--menú desplegable en el nombre de usuario-->
         <div class="dropdown">
-        <img src="img/user.jpg" alt="" style="z-index: 5px; width: 22px; height: 25px; opacity: 70%;">
+        <img src="" id="miniFoto" alt="" style="z-index: 5px; width: 22px; height: 25px; opacity: 70%;">
         <a class="py-2 d-none d-md-inline-block dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="userLogueado" style="color:white;"></a>
         <!-- puntos del menú: por ahora solo funciona el cerrar sesión,y la redirección del carrito -->
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -55,7 +55,11 @@
       <script>//obtengo el usuario ingresado en el login
         var nomDeUsuer = localStorage.getItem("usuario");
 		document.getElementById("userLogueado").innerHTML= 'Hola, ' + nomDeUsuer;
-		
+		document.addEventListener("DOMContentLoaded", function (){
+			localStorage.setItem("ImgCargada", "");
+			var silueta = "img/user.jpg"
+			document.getElementById("miniFoto").src = silueta;
+		});
 		//cerrar sesión
 		function olvidar(){
         localStorage.clear();
@@ -84,7 +88,7 @@
 							<br>
 							<h5>Últimas compras</h5>
 								<div class="container align-middle align-center">
-									<div id="cart-list-container" style="width:25%;"></div>
+									<div id="cart-list-container"></div>
 								</div>
 						</div>
 					</div>
@@ -286,9 +290,13 @@
 	//para cargar la nueva foto
 	function cargarNuevaFoto(){
 
-	var urlFoto = document.getElementById("urlImg").value;
-	if (urlFoto != ""){
-	document.getElementById("fotoPerfil").src = urlFoto;}
+		var urlFoto = document.getElementById("urlImg").value;
+		if (urlFoto != ""){
+		document.getElementById("fotoPerfil").src = urlFoto;
+		localStorage.setItem('ImgPerfil', urlFoto); 
+		localStorage.setItem('ImgCargada', 'cargada');
+		document.getElementById("miniFoto").src = urlFoto;
+		}
 	}
   </script>
 </div>
@@ -306,6 +314,7 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>
