@@ -70,8 +70,7 @@
   </nav>
   <main>
 	<div class="container d-flex flex-column flex-md-row justify-content-center">
-		
-			<div class="col-4">
+				<div class="col-4">
 					<div class="row">
 						<div class="bg-light rounded text-align-center shadow-lg mt-5 p-3 mb-2 bg-white">
 							<h3 id="usuarioLogueado" class="text-center"></h3>
@@ -85,90 +84,244 @@
 							<div class="row justify-content-center">
 								<button class="boton mt-2" type="button" data-toggle="modal" data-target="#cargarFoto">Cargar foto de perfil</button>
 							</div>
-							<br>
+							<br><br>
 							<h5>Últimas compras</h5>
 								<div class="container align-middle align-center">
 									<div id="cart-list-container"></div>
 								</div>
 						</div>
 					</div>
-			</div>
-			<div class="col-6">
-				<div class="bg-light shadow-lg p-3 mb-5 bg-white rounded mt-5">
-					<h3>Editar Perfil</h3>
-					<form class="needs-validation" novalidate id="send-info">
-						<br>
-						<div class="row">
-						  <div class="col-md-6 mb-3">
-							<label for="PrimerNom">Primer Nombre</label>
-							<input type="text" class="form-control" id="PrimerNom" placeholder="" value="" required>
-							<div class="invalid-feedback">
-							  Ingresa tu primer nombre
-							</div>
-						  </div>
-						  <div class="col-md-6 mb-3">
-							<label for="SegundoNom">Segundo Nombre</label>
-							<input type="text" class="form-control" id="SegundoNom" placeholder="" value="" required>
-							<div class="invalid-feedback">
-							  Ingresa tu segundo nombre
-							</div>
-						  </div>
-						</div><br>
-						<div class="row">
-						  <div class="col-md-6 mb-3">
-							<label for="PrimerApe">Primer Apellido</label>
-							<input type="text" class="form-control" id="PrimerApe" placeholder="" value="" required>
-							<div class="invalid-feedback">
-							  Ingresa tu primer apellido
-							</div>
-						  </div>
-						  <div class="col-md-6 mb-3">
-							<label for="SegundoApe">Segundo Apellido</label>
-							<input type="text" class="form-control" id="SegundoApe" placeholder="" value="" required>
-							<div class="invalid-feedback">
-							  Ingresa tu segundo apellido
-							</div>
-						  </div>
-						</div><br>
-						<div class="row">
-						  <div class="col-md-6 mb-3">
-							<label for="fechaNac">Fecha de nacimiento</label>
-							<input type="date" class="form-control" id="fechaNac" placeholder="" value="" min="1910-01-01" max="2020-10-31" required>
-							<div class="invalid-feedback">
-							  Ingresa tu fecha de nacimiento
-							</div>
-						  </div>
-						  <div class="col-md-3 mb-3">
-							<label for="edad">Edad</label>
-							<input type="number" class="form-control" id="edad" placeholder="" value="" min="1" max="110" required>
-							<div class="invalid-feedback">
-							  Ingresa tu edad
-							</div>
-						  </div>
-						</div><br>
-						<div class="row">
-							<div class="col-md-4 mb-3">
-								<label for="telef">Teléfono/Celular</label>
-								<input type="tel" class="form-control" id="telef" placeholder="" value="" required>
-								<div class="invalid-feedback">
-								  Ingresa tu número de teléfono o celular
-								</div>
-							</div>
-							<div class="col-md-6 mb-3">
-							<label for="email">Correo electrónico</label>
-							<input type="email" class="form-control" id="email" placeholder="" value="" required>
-							<div class="invalid-feedback">
-							  Ingresa tu e-mail
-							</div>
-						  </div>
-						</div><br>
-						<div class="row justify-content-end">
-							<button id="guardarInfo" class="boton" type="submit">Actualizar datos</button>
-						</div>
-					</form>
 				</div>
-			</div>
-		
+				<div class="col-6">
+					<div class="container bg-light shadow-lg p-3 mb-5 rounded mt-5">
+						
+						<ul class="nav nav-tabs nav-justified justify-content-around" role="tablist">
+							<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Miperfil">Perfil</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#MiDireccion">Dirección</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#MiFormaPago">Medios de Pago</a></li>
+						</ul>
+						<br>
+						<div class="tab-content">
+						<!--la clase "in active" es para que sea la tab activa-->
+							<div id="Miperfil" class="tab-pane in active" role="tab">
+								<h3>Editar perfil</h3>	
+								<form class="needs-validation" novalidate id="send-info">
+									<br>
+									<div class="row">
+									  <div class="col-md-6 mb-3">
+										<label for="PrimerNom">Primer Nombre</label>
+										<input type="text" class="form-control" id="PrimerNom" placeholder="" value="" required>
+										<div class="invalid-feedback">
+										  Ingresa tu primer nombre
+										</div>
+									  </div>
+									  <div class="col-md-6 mb-3">
+										<label for="SegundoNom">Segundo Nombre</label>
+										<input type="text" class="form-control" id="SegundoNom" placeholder="" value="" required>
+										<div class="invalid-feedback">
+										  Ingresa tu segundo nombre
+										</div>
+									  </div>
+									</div><br>
+									<div class="row">
+									  <div class="col-md-6 mb-3">
+										<label for="PrimerApe">Primer Apellido</label>
+										<input type="text" class="form-control" id="PrimerApe" placeholder="" value="" required>
+										<div class="invalid-feedback">
+										  Ingresa tu primer apellido
+										</div>
+									  </div>
+									  <div class="col-md-6 mb-3">
+										<label for="SegundoApe">Segundo Apellido</label>
+										<input type="text" class="form-control" id="SegundoApe" placeholder="" value="" required>
+										<div class="invalid-feedback">
+										  Ingresa tu segundo apellido
+										</div>
+									  </div>
+									</div><br>
+									<div class="row">
+									  <div class="col-md-6 mb-3">
+										<label for="fechaNac">Fecha de nacimiento</label>
+										<input type="date" class="form-control" id="fechaNac" placeholder="" value="" min="1910-01-01" max="2020-10-31" required>
+										<div class="invalid-feedback">
+										  Ingresa tu fecha de nacimiento
+										</div>
+									  </div>
+									  <div class="col-md-3 mb-3">
+										<label for="edad">Edad</label>
+										<input type="number" class="form-control" id="edad" placeholder="" value="" min="1" max="110" required>
+										<div class="invalid-feedback">
+										  Ingresa tu edad
+										</div>
+									  </div>
+									</div><br>
+									<div class="row">
+										<div class="col-md-4 mb-3">
+											<label for="telef">Teléfono/Celular</label>
+											<input type="tel" class="form-control" id="telef" placeholder="" value="" required>
+											<div class="invalid-feedback">
+											  Ingresa tu número de teléfono o celular
+											</div>
+										</div>
+										<div class="col-md-6 mb-3">
+										<label for="email">Correo electrónico</label>
+										<input type="email" class="form-control" id="email" placeholder="" value="" required>
+										<div class="invalid-feedback">
+										  Ingresa tu e-mail
+										</div>
+									  </div>
+									</div><br>
+									<div class="row justify-content-end">
+										<button id="guardarInfo" class="boton" type="submit">Actualizar datos</button>
+									</div>
+								</form>
+							</div>
+						<!--la clase "fade" es para el efecto de mostrarlo cuando se selecciona-->	
+							<div id="MiDireccion" class="tab-pane fade" role="tab">
+								<h3>Dirección de envío</h3>
+									<form class="needs-validation" novalidate id="send-info">
+										<br>
+										<div class="row">
+										  <div class="col-md-6 mb-3">
+											<label for="sendAdressStr">Calle</label>
+											<input type="text" class="form-control" id="sendAdressStr" placeholder="" value="" required>
+											<div class="invalid-feedback">
+											  Ingresa el nombre de tu calle
+											</div>
+										  </div>
+										  <div class="col-md-4 mb-3">
+											<label for="sendAdressNum">Número</label>
+											<input type="number" class="form-control" id="sendAdressNum" placeholder="" value="" required>
+											<div class="invalid-feedback">
+											  Ingresa el número
+											</div>
+										  </div>
+										</div><br>
+										<div class="row">
+										  <div class="col-md-6 mb-3">
+											<label for="sendAdressCor1">Entre Calle 1</label>
+											<input type="text" class="form-control" id="sendAdressCor1" placeholder="" value="" required>
+											<div class="invalid-feedback">
+											  Ingresa el nombre de la calle
+											</div>
+										  </div>
+										  <div class="col-md-6 mb-3">
+											<label for="sendAdressCor2"> y Calle 2</label>
+											<input type="text" class="form-control" id="sendAdressCor2" placeholder="" value="" required>
+											<div class="invalid-feedback">
+											  Ingresa el nombre de la calle
+											</div>
+										  </div>
+										</div><br>
+										<div class="row">
+										  <div class="col-md-6 mb-3">
+											<label for="sendAdressCity">Ciudad</label>
+											<input type="text" class="form-control" id="sendAdressCity" placeholder="" value="" required>
+											<div class="invalid-feedback">
+											  Ingresa la ciudad
+											</div>
+										  </div>
+										  <div class="col-md-6 mb-3">
+											<label for="sendAdressCount">País</label>
+											<input type="text" class="form-control" id="sendAdressCount" placeholder="" value="" required>
+											<div class="invalid-feedback">
+											  Ingresa el país
+											</div>
+										  </div>
+										</div><br>
+										<div class="row">
+											<div class="col-md-4 mb-3">
+												<label for="postalCode">Código Postal</label>
+												<input type="number" class="form-control" id="postalCode" placeholder="" value="" required>
+												<div class="invalid-feedback">
+												  Ingresa el código postal
+												</div>
+											</div>
+										</div><br>
+										<div class="row justify-content-end">
+											<button id="guardarInfo" class="boton" type="submit">Actualizar datos</button>
+										</div>
+									</form>
+							</div>
+							<div id="MiFormaPago" class="tab-pane fade" role="tab">
+								<h3>Forma de pago</h3>
+								<br>
+								<form class="needs-validation" id="pay-info">
+									<p><b>Tarjeta de Crédito </b>
+									  <img src="img/tarjetas.png" alt="" style="height: 25px;"></p>    
+										<div class="row">
+										  <div class="col-md-6 mb-2">
+											<label for="NombreTitular">Nombre del titular</label>
+											<input type="text" class="form-control" id="NombreTitular" placeholder="" value="" required>
+										  </div>
+										  <div class="col-md-6 mb-2">
+											<label for="NumTja">Número de la tarjeta</label>
+											<input type="number" class="form-control" id="NumTja" placeholder="" value="" min= 10000000000000 max=99999999999999 required>
+										  </div>
+										</div>
+										<div class="row">
+										  <div class="col-md-4 mb-2">
+											<label for="vtoTja">Vencimiento</label>
+											<input type="month" class="form-control" id="vtoTja" placeholder="mm/yy" value="" required>
+										  </div>
+										  <div class="col-md-4 mb-2">
+										  <label for="cvvTja">CVV</label>
+										  <input type="number" class="form-control" id="cvvTja" placeholder="" value="" min= 100 max=999 required>
+										  </div>
+										</div>
+									<br>
+									<p><b>Transferencia Bancaria </b>
+									  <img src="img/banco.png" alt="" style="height: 25px;"></p>
+										<div class="row">
+										  <div class="col-md-8 mb-2">
+											<label for="NombreTitularCuenta">Nombre del titular</label>
+											<input type="text" class="form-control" id="NombreTitularCuenta" placeholder="" value="" required>
+										  </div>
+										</div>
+										<div class="row">
+										  <div class="col-md-6 mb-2">
+											  <label for="PaisCuenta">País de la cuenta</label>
+											  <input type="text" class="form-control" id="PaisCuenta" placeholder="" value="" required>
+										  </div>
+										  <div class="col-md-6 mb-2">
+											  <label for="banco">Banco</label>
+											  <select name="tuBanco" class="form-control" id="banco" placeholder="" value="" required>
+												  <option></option>
+												  <option>BBVA</option>
+												  <option>BROU</option>
+												  <option>HSBC</option>
+												  <option>Itaú</option>
+												  <option>Santander</option>
+												  <option>Scotiabank</option>
+											  </select>
+										  </div>
+										</div>
+										<div class="row">
+										  <div class="col-md-6 mb-2">
+											<label for="NumCta">Número de cuenta</label>
+											<input type="number" class="form-control" id="NumCta" placeholder="" value="" min= 10000000000000 max=99999999999999 required>
+										  </div>
+										  <div class="col-md-6 mb-2">
+										  <label for="tipoCuenta">Tipo de cuenta</label>
+										  <select name="tipoCuenta" class="form-control" id="tipoCuenta" placeholder="" value="" required>
+											  <option></option>
+											  <option>Caja de ahorro ($)</option>
+											  <option>Caja de ahorro (USD)</option>
+											  <option>Cuenta corriente ($)</option>
+											  <option>Cuenta corriente (USD)</option>
+										  </select>
+										  </div>
+										</div>
+				
+									<div class="row justify-content-end">
+										<button type="button" class="boton btn btn-primary">Confirmar datos</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			
 	</div>	
 		
 	
