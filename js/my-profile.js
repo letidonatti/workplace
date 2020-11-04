@@ -1,3 +1,4 @@
+const SILUETA = "img/user.jpg";
 
 //función que actualiza las últimas compras según el listado del carrito
 
@@ -13,7 +14,7 @@ function actualizarUltCompras(){
 			let article = listado[i];
 			htmlContentToAppend += `
 				
-					<img src="` + article.src + `" alt=" " class="img-thumbnail">
+					<img src="` + article.src + `" alt=" " class="img-thumbnail" style="width:25%;">
 				
 			 `
 		}
@@ -38,10 +39,20 @@ function cargarUsuario(){
 			document.getElementById("edad").value = perfil.edad;
 			document.getElementById("telef").value = perfil.telefono;
 			document.getElementById("email").value = perfil.correo;
-			document.getElementById("fotoPerfil").src = perfil.img;
-			document.getElementById("prevImg").src = perfil.img;
+	}		
+	if (localStorage.getItem("ImgCargada") != ""){
+		//si hay una foto cargada por el usuario, cargo la imagen en todas las visualizaciones
+		var imagen = localStorage.getItem('ImgPerfil');
+		document.getElementById("fotoPerfil").src = imagen;
+		document.getElementById("prevImg").src = imagen;
+		document.getElementById("miniFoto").src = imagen;
+	}else{
+		//sino hay foto cargada, muestro una silueta
+		document.getElementById("fotoPerfil").src = SILUETA;
+		document.getElementById("prevImg").src = SILUETA;
+		document.getElementById("miniFoto").src = SILUETA;
 	}
-	
+		
 }
 
 
@@ -66,47 +77,51 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				edad : document.getElementById("edad").value,
 				telefono : document.getElementById("telef").value,
 				correo : document.getElementById("email").value,
-				img : document.getElementById("urlImg").value,
+				
 			}
 			localStorage.setItem('perfilUsu', JSON.stringify(perfil)); //este es el objeto que se guarda como string en el localstorage
 			localStorage.setItem('UsuCargado', 'cargado'); //esta variable sirve para saber si hay un objeto guardado en la variable anterior, algo así como un interruptor, para no llamar a la otra variable que tiene el objeto cuando está vacío y evitar el error.
-	
-		});	
+		
+		//muestro alert para avisar que los datos quedaron guardados
+		// Swal.fire({
+			  // position: 'top-end',
+			  // icon: 'success',
+			  // title: 'Su información ha sido actualizada',
+			  // showConfirmButton: false,
+			  // timer: 2000
+		// });
+	});	
+	// Función que controla si hay campos inválidos
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        
+        var forms = document.getElementsByClassName('needs-validation');
+    
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...Parece que algo ha fallado :(',
+                text: 'Por favor verifica haber completado todos los campos del formulario.',
+              })
+            }
+            if (form.checkValidity() === true) {
+              event.preventDefault();
+              Swal.fire({
+                icon: 'success',
+			    title: 'Su información ha sido actualizada',
+				showConfirmButton: false,
+				timer: 2000
+              })
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
 		
 });
-
-/*<script>
-// Función que controla si hay campos inválidos
-(function() {
-  'use strict';
-  window.addEventListener('submit', function() {
-	
-	var forms = document.getElementsByClassName('needs-validation');
-	var pagoModal = document.getElementById('alertError');
-	
-	var validation = Array.prototype.filter.call(forms, function(form) {
-	  form.addEventListener('submit', function(event) {
-		if (form.checkValidity() === false){
-		  event.preventDefault();
-		  event.stopPropagation();
-		  Swal.fire({
-			icon: 'error',
-			title: 'Oops...Parece que algo ha fallado :(',
-			text: 'Por favor verifica haber completado todos los campos del formulario.',
-		  })
-		}
-		if (form.checkValidity() === true){
-		  event.preventDefault();
-		  Swal.fire({
-			icon: 'success',
-			title: 'Los datos han sido guardados correctamente :)',
-			text: '¡Puedes continuar comprando!',
-		  })
-		}
-		form.classList.add('was-validated');
-	  }, false);
-	});
-  }, false);
-})();
-
-</script>*/
