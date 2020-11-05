@@ -55,9 +55,10 @@
       <script>//obtengo el usuario ingresado en el login
         var nomDeUsuer = localStorage.getItem("usuario");
 		document.getElementById("userLogueado").innerHTML= 'Hola, ' + nomDeUsuer;
+		//muestro la imagen al lado del desplegable del usuario
 		document.addEventListener("DOMContentLoaded", function (){
 			localStorage.setItem("ImgCargada", "");
-			var silueta = "img/user.jpg"
+			var silueta = "img/user.jpg";
 			document.getElementById("miniFoto").src = silueta;
 		});
 		//cerrar sesión

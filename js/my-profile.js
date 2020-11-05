@@ -82,14 +82,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			localStorage.setItem('perfilUsu', JSON.stringify(perfil)); //este es el objeto que se guarda como string en el localstorage
 			localStorage.setItem('UsuCargado', 'cargado'); //esta variable sirve para saber si hay un objeto guardado en la variable anterior, algo así como un interruptor, para no llamar a la otra variable que tiene el objeto cuando está vacío y evitar el error.
 		
-		//muestro alert para avisar que los datos quedaron guardados
-		// Swal.fire({
-			  // position: 'top-end',
-			  // icon: 'success',
-			  // title: 'Su información ha sido actualizada',
-			  // showConfirmButton: false,
-			  // timer: 2000
-		// });
+		
+		
 	});	
 	// Función que controla si hay campos inválidos
     (function() {
@@ -108,7 +102,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 title: 'Oops...Parece que algo ha fallado :(',
                 text: 'Por favor verifica haber completado todos los campos del formulario.',
               })
-            }
+			}
+			//muestro alert para avisar que los datos quedaron guardados
             if (form.checkValidity() === true) {
               event.preventDefault();
               Swal.fire({
