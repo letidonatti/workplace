@@ -42,7 +42,7 @@ function cargarUsuario(){
 	}		
 	if (localStorage.getItem("ImgCargada") != ""){
 		//si hay una foto cargada por el usuario, cargo la imagen en todas las visualizaciones
-		var imagen = localStorage.getItem('ImgPerfil');
+		var imagen = localStorage.getItem('imgBase64');
 		document.getElementById("fotoPerfil").src = imagen;
 		document.getElementById("prevImg").src = imagen;
 		document.getElementById("miniFoto").src = imagen;

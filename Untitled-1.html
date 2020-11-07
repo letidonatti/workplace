@@ -1,0 +1,53 @@
+<!-- https://i.ibb.co/Hp9DB54/diseno-ilustracion-vector-personaje-avatar-mujer-joven-24877-18536.jpg
+
+https://i.ibb.co/zXq0cMq/myavatar.png
+
+https://i.ibb.co/SJ7v6s7/images-q-tbn-ANd9-Gc-Tf0fxng-CEs-B-TLca-PVDCBT6ra-J8-YWxu-E0-Xa-A-usqp-CAU.jpg
+
+
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+ </head>
+ <body>
+    <input type='file' accept='image/*' onchange='openFile(event)'><br>
+    <img id='output'> 
+  
+    <script>
+       var openFile = function(event) {
+        var input = event.target;
+    
+        var reader = new FileReader();
+        reader.onload = function(){
+          var dataURL = reader.result;
+          var output = document.getElementById('output');
+          output.src = dataURL;
+          localStorage.setItem("imgBase64", dataURL);
+        };
+        reader.readAsDataURL(input.files[0]);
+        
+        /* var base64 = getBase64Image(document.getElementById("output"));
+        localStorage.setItem("imagen", base64); */
+      }; 
+      
+       /*  function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var dataURL = canvas.toDataURL();
+        return dataURL;
+        }
+ */
+        
+    </script>
+    
+ </body>
+ </html>
+

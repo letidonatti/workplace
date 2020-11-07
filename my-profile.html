@@ -415,11 +415,12 @@
 			</div>
 			<br>
 			<div class="row">
-				<label for="urlImg">URL de la imagen: </label>
+				<input type='file' accept='image/*' onchange='openFile(event)'><br>
+				<!-- <label for="urlImg">URL de la imagen: </label>
 				<input type="url" class="form-control" id="urlImg" placeholder="Ingresa la URL de la imagen" value="" required>
 				<div class="invalid-feedback">
 				  Ingresa la dirección de la foto con formato URL
-				</div>
+				</div> -->
 			</div>
 			<br>
         </div>
@@ -430,26 +431,36 @@
     </div>
   </div>
   <script>
-	document.getElementById("cargarFoto").addEventListener("loaded", function() {
-
-		let fotoPerfil = document.getElementById("urlImg").value;
+	  //este evento pasa la img a 64 bits para guardarla en el localstorage como imagen y no como url
+	   var openFile = function(event) {
+        var input = event.target;
+        var reader = new FileReader();//funciona simil API, es un lector de archivos asincrónico
+        reader.onload = function(){
+          var dataURL = reader.result;//capturo el resultado (igual que haría con un JSON)
+          var output = document.getElementById('prevImg');
+          output.src = dataURL;
+		  localStorage.setItem("imgBase64", dataURL);//guardo la img en memoria local
+		  //este parámetro lo utilizo al cargar la página para ver si el usuario ya cargó una imagen
+		  // o utilizo la silueta "por defecto"
+		  localStorage.setItem("ImgCargada", "cargada");
+        };
+        reader.readAsDataURL(input.files[0]);
+		
+		//obtengo la img que está en memoria para previsualizarla
+		let fotoPerfil = localStorage.getItem("imgBase64");
 		document.getElementById("prevImg").src = fotoPerfil;
-	});
-  //para mostrar una previsualización de la imagen
-	document.getElementById("urlImg").addEventListener("change", function() {
 	
-		var urlFoto = document.getElementById("urlImg").value;
-		document.getElementById("prevImg").src = urlFoto;
-	});
+	  }; 
+	
 	//para cargar la nueva foto
 	function cargarNuevaFoto(){
 
-		var urlFoto = document.getElementById("urlImg").value;
+		var urlFoto = localStorage.getItem("imgBase64");
 		if (urlFoto != ""){
-		document.getElementById("fotoPerfil").src = urlFoto;
-		localStorage.setItem('ImgPerfil', urlFoto); 
-		localStorage.setItem('ImgCargada', 'cargada');
-		document.getElementById("miniFoto").src = urlFoto;
+			//la cargo en la foto de perfil: 
+			document.getElementById("fotoPerfil").src = urlFoto;
+			//la cargo en el navbar
+			document.getElementById("miniFoto").src = urlFoto;
 		}
 	}
   </script>

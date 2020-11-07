@@ -23,7 +23,8 @@ inputPass.addEventListener('invalid', function (e) {
 function guardar(){
     var user = inputUser.value;
     var pass = inputPass.value;
-
+    let cargada = "";
+    localStorage.setItem("ImgCargada", cargada);
     if (user != '' && pass != ''){
         localStorage.setItem("usuario", user);
         localStorage.setItem("contraseña", pass);
